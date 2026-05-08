@@ -1,0 +1,21 @@
+#--------------------------------------------------------------------------------------
+#   $safeprojectname$rsc.mki
+#
+#--------------------------------------------------------------------------------------
+
+appName     = $safeprojectname$
+sAppName    = $safeprojectname$
+
+outputDir = $(mdlApps)
+
+appRscs =   \
+         $(reqdObjs)$(appName).mi \
+
+$(outputDir)$(appName).ma       : $(appRscs)
+    $(msg)
+    > $(rscObjects)make.opt
+    -o$@
+    $(appRscs)
+    <
+    $(RLibCmd) @$(rscObjects)make.opt
+    ~time

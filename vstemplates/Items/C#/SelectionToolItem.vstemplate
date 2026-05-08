@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0"
+            Type="Item"
+            xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
+            xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+
+	<TemplateData>
+		<Name>Selection Tool</Name>
+		<Description>Creates a selection tool derived from DgnElementSetTool for locating and selecting elements in MicroStation CONNECT. Includes core override stubs for hit-testing and selection workflow.</Description>
+
+		<Icon>__TemplateIcon.ico</Icon>
+		<PreviewImage>__PreviewImage.png</PreviewImage>
+
+		<TemplateID>c801136b-d71b-47f2-8c17-e7a2db9cf39f</TemplateID>
+		<ProjectType>CSharp</ProjectType>
+		<RequiredFrameworkVersion>4.7.2</RequiredFrameworkVersion>
+
+		<NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+		<Hidden>false</Hidden>
+		<DefaultName>SelectionTool.cs</DefaultName>
+	</TemplateData>
+
+	<TemplateContent>
+		<References>
+			<Reference>
+				<Assembly>System</Assembly>
+			</Reference>
+		</References>
+
+		<ProjectItem ReplaceParameters="true" OpenInEditor="false">SelectionTool.cs</ProjectItem>
+
+		<CustomParameters>
+			<CustomParameter Name="$item$" Value="MicroStation Selection Tool" />
+			<CustomParameter Name="$language$" Value="CSharp" />
+		</CustomParameters>
+	</TemplateContent>
+
+	<WizardExtension>
+		<Assembly>VSTMC.Wizard, Version=8.2.1.2, Culture=neutral, PublicKeyToken=6dfed4efb28d91d8</Assembly>
+		<FullClassName>VSTMC.Wizard.IWizardImplementation</FullClassName>
+	</WizardExtension>
+
+</VSTemplate>

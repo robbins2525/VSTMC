@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+	<TemplateData>
+		<Name>MicroStation Native C++ Add-in</Name>
+		<Description>Creates a native C++ Addin project for MicroStation CONNECT Edition without key-in commands. Includes build configuration, resources, and utility scaffolding.</Description>
+		<Icon>__TemplateIcon.ico</Icon>
+		<PreviewImage>__PreviewImage.png</PreviewImage>
+		<ProjectType>VC</ProjectType>
+		<LanguageTag>Cpp</LanguageTag>
+		<PlatformTag>Windows</PlatformTag>
+		<ProjectTypeTag>Desktop</ProjectTypeTag>
+		<SortOrder>1000</SortOrder>
+		<TemplateID>ab333243-b5a4-4b4f-9719-63839c843cb7</TemplateID>
+		<CreateNewFolder>true</CreateNewFolder>
+		<DefaultName>Addin</DefaultName>
+		<ProvideDefaultName>true</ProvideDefaultName>
+		<NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+		<Hidden>false</Hidden>
+	</TemplateData>
+
+	<TemplateContent>
+		<Project File="ProjectTemplate.vcxproj" ReplaceParameters="true">
+			<ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$.vcxproj.filters">ProjectTemplate.vcxproj.filters</ProjectItem>			
+			<ProjectItem ReplaceParameters="true" OpenInEditor="true" TargetFileName="$safeprojectname$.cpp">Addin.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$.h">Addin.h</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$.mke">Addin.mke</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$.r">Addin.r</ProjectItem>			
+		</Project>
+
+		<CustomParameters>
+			<CustomParameter Name="$language$" Value="CPP"/>
+		</CustomParameters>
+	</TemplateContent>
+
+	<WizardExtension>
+		<Assembly>VSTMC.Wizard, Version=8.2.1.2, Culture=neutral, PublicKeyToken=6dfed4efb28d91d8</Assembly>
+		<FullClassName>VSTMC.Wizard.IWizardImplementation</FullClassName>
+	</WizardExtension>
+</VSTemplate>

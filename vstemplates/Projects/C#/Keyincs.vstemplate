@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate
+  Version="3.0.0"
+  Type="Project"
+  xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
+  xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+
+	<TemplateData>
+		<Name>MicroStation Keyin Command Add-In</Name>
+		<Description>Creates a MicroStation CONNECT Edition add-in preconfigured with command table and key-in support. Includes sample command implementation and registration structure for rapid development of custom tools and interactive workflows.</Description>
+		<Icon>4556.ico</Icon>
+		<PreviewImage>__PreviewImage.png</PreviewImage>
+
+		<ProjectType>CSharp</ProjectType>
+		<LanguageTag>CSharp</LanguageTag>
+		<PlatformTag>Windows</PlatformTag>
+		<ProjectTypeTag>Desktop</ProjectTypeTag>
+		<RequiredFrameworkVersion>4.7.2</RequiredFrameworkVersion>
+
+		<SortOrder>1000</SortOrder>
+		<TemplateID>665c20f9-301f-4d3c-b96e-c15eb0c9d819</TemplateID>
+
+		<CreateNewFolder>true</CreateNewFolder>
+		<DefaultName>MicroStationAddin</DefaultName>
+		<ProvideDefaultName>true</ProvideDefaultName>
+
+		<NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+		<Hidden>false</Hidden>
+	</TemplateData>
+
+	<TemplateContent>
+		<Project File="ProjectTemplate.csproj" ReplaceParameters="true">
+			<!-- Properties -->
+			<ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="Properties\Resources.Designer.cs">Resources.Designer.cs</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="Properties\Resources.resx">Resources.resx</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="Properties\Settings.settings">Settings.settings</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="Properties\Settings.Designer.cs">Settings.Designer.cs</ProjectItem>
+
+			<!-- Core Add-in Files -->
+			<ProjectItem ReplaceParameters="true" OpenInEditor="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="KeyinCommands.cs">KeyinCommands.cs</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="Commands.xml">Commands.xml</ProjectItem>
+
+			<!-- Misc -->
+			<ProjectItem ReplaceParameters="false" TargetFileName=".editorconfig">.editorconfig</ProjectItem>
+			<ProjectItem ReplaceParameters="false" TargetFileName="Directory.Build.props">Directory.Build.props</ProjectItem>			
+		</Project>
+
+		<CustomParameters>
+			<CustomParameter Name="$language$" Value="CSharp" />
+			<CustomParameter Name="$rootnamespace$" Value="$safeprojectname$" />
+		</CustomParameters>
+	</TemplateContent>
+
+	<WizardExtension>
+		<Assembly>VSTMC.Wizard, Version=8.2.1.2, Culture=neutral, PublicKeyToken=6dfed4efb28d91d8</Assembly>
+		<FullClassName>VSTMC.Wizard.IWizardImplementation</FullClassName>
+	</WizardExtension>
+</VSTemplate>

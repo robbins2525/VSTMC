@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="$ToolVersion$" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<!-- =========================================================
+       Global Properties
+       ========================================================= -->
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+
+		<ProjectGuid>$guid1$</ProjectGuid>
+		<OutputType>Library</OutputType>
+		<OutputPath>$(Bentley_MdlappsPath)</OutputPath>
+
+		<AppDesignerFolder>My Project</AppDesignerFolder>
+		<AssemblyName>$safeprojectname$</AssemblyName>
+		<RootNamespace>$safeprojectname$</RootNamespace>
+
+		<TargetFrameworkVersion>v$targetframeworkversion$</TargetFrameworkVersion>
+		<Nullable>enable</Nullable>
+		<FileAlignment>512</FileAlignment>
+
+		<!-- Debug launch (shared by all configs unless overridden) -->
+		<StartAction>Program</StartAction>
+		<StartProgram>$(Bentley_AppPath)$(Bentley_App)</StartProgram>
+		<StartArguments />
+	</PropertyGroup>
+
+	<!-- =========================================================
+       Configuration Properties
+       ========================================================= -->
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+		<OutputType>Library</OutputType>
+		<OutputPath>$(Bentley_MdlappsPath)</OutputPath>
+		<AppDesignerFolder>My Project</AppDesignerFolder>
+		<AssemblyName>$safeprojectname$</AssemblyName>
+		<PlatformTarget>x64</PlatformTarget>
+		<FileAlignment>512</FileAlignment>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+		<DebugType>pdbonly</DebugType>
+		<DefineDebug>false</DefineDebug>
+		<DefineTrace>true</DefineTrace>
+		<Optimize>true</Optimize>
+		<OutputPath>$(Bentley_MdlappsPath)</OutputPath>
+		<PlatformTarget>x64</PlatformTarget>
+		<DocumentationFile>$safeprojectname$.xml</DocumentationFile>
+		<NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Design|x64'">
+		<OutputPath>$(Bentley_MdlappsPath)</OutputPath>
+		<DefineConstants>TRACE,DEBUG,DESIGN</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<ReferencePath>$(Bentley_ReferencePaths)</ReferencePath>
+	</PropertyGroup>
+
+	<!-- =========================================================
+       Defaults
+       ========================================================= -->
+	<ItemDefinitionGroup>
+		<Reference>
+			<Private>False</Private>
+		</Reference>
+	</ItemDefinitionGroup>
+
+	<!-- =========================================================
+       References
+       ========================================================= -->
+	<ItemGroup>
+		<!-- Bentley / MicroStation -->
+		<Reference Include="ustation" />
+		<Reference Include="Bentley.DgnDisplayNet" />
+		<Reference Include="Bentley.DgnPlatformNET" />
+		<Reference Include="Bentley.General.1.0" />
+		<Reference Include="Bentley.GeometryNET" />
+		<Reference Include="Bentley.MicroStation" />
+		<Reference Include="Bentley.Windowing" />
+		<Reference Include="Bentley.MicroStation.Interfaces.1.0" />
+		<Reference Include="Bentley.MicroStation.WPF" />
+		<Reference Include="Bentley.Interop.MicroStationDGN">
+			<EmbedInteropTypes>False</EmbedInteropTypes>
+			<Private>False</Private>
+		</Reference>
+
+		<!-- Wizard-injected references (keep as-is) -->
+		$reference$
+
+		<!-- .NET -->
+		<Reference Include="System" />
+		<Reference Include="System.Core" />
+		<Reference Include="System.Data" />
+		<Reference Include="System.Data.DataSetExtensions" />
+		<Reference Include="System.Windows.Forms" />
+		<Reference Include="System.Xml" />
+		<Reference Include="System.Xml.Linq" />
+	</ItemGroup>
+
+	<!-- =========================================================
+       Default Imports
+       ========================================================= -->
+	<ItemGroup>
+		<Import Include="Microsoft.VisualBasic" />
+		<Import Include="System" />
+		<Import Include="System.Collections" />
+		<Import Include="System.Collections.Generic" />
+		<Import Include="System.Data" />
+		<Import Include="System.Diagnostics" />
+		<Import Include="System.Linq" />
+		<Import Include="System.Xml.Linq" />
+	</ItemGroup>
+
+	<!-- =========================================================
+       Source Files
+       ========================================================= -->
+	<ItemGroup>
+		<Compile Include="Program.vb" />
+		<Compile Include="KeyinCommands.vb" />
+		<Compile Include="My Project\AssemblyInfo.vb" />
+
+		<Compile Include="My Project\Application.Designer.vb">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Application.myapp</DependentUpon>
+		</Compile>
+
+		<Compile Include="My Project\Resources.Designer.vb">
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+
+		<Compile Include="My Project\Settings.Designer.vb">
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+		</Compile>
+	</ItemGroup>
+
+	<!-- =========================================================
+       Resources / Settings
+       ========================================================= -->
+	<ItemGroup>
+		<EmbeddedResource Include="My Project\Resources.resx">
+			<Generator>vbMyResourcesResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.vb</LastGenOutput>
+			<CustomToolNamespace>My.Resources</CustomToolNamespace>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+
+		<EmbeddedResource Include="Commands.xml">
+			<SubType>Designer</SubType>
+			<LogicalName>CommandTable.xml</LogicalName>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="My Project\Application.myapp">
+			<Generator>MyApplicationCodeGenerator</Generator>
+			<LastGenOutput>Application.Designer.vb</LastGenOutput>
+		</None>
+
+		<None Include="My Project\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<CustomToolNamespace>My</CustomToolNamespace>
+			<LastGenOutput>Settings.Designer.vb</LastGenOutput>
+		</None>
+
+		<None Include="App.config" />
+	</ItemGroup>
+
+	<Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>

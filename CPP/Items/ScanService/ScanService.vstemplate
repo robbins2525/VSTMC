@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+	<TemplateData>
+		<Name>Scan Service (MicroStation Native C++)</Name>
+		<Description>Creates a scan workflow for MicroStation native C++ that uses ScanCriteriaHelpers to query elements from the active model, including element type filtering and result processing.</Description>
+		<Icon>__TemplateIcon.ico</Icon>
+		<PreviewImage>__PreviewImage.png</PreviewImage>
+		<ProjectType>VC</ProjectType>		
+		<SortOrder>1000</SortOrder>
+		<TemplateID>f2c7226d-4ead-4b7c-b1ac-940ac1d6007e</TemplateID>	
+		<DefaultName>ScanService.cpp</DefaultName>		
+		<NumberOfParentCategoriesToRollUp>0</NumberOfParentCategoriesToRollUp>
+		<Hidden>false</Hidden>
+	</TemplateData>
+
+	<TemplateContent>		
+		<ProjectItem ReplaceParameters="true" OpenInEditor="false" TargetFileName="Source Files\$safeitemname$.cpp">ScanService.cpp</ProjectItem>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="false" TargetFileName="Header Files\$safeitemname$.h">ScanService.h</ProjectItem>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="true" TargetFileName="Documentation\$safeitemname$.md">ScanService.md</ProjectItem>
+		<CustomParameters>
+			<CustomParameter Name="$language$" Value="CPP"/>
+		</CustomParameters>
+	</TemplateContent>
+
+	<WizardExtension>
+		<Assembly>VSTMC.Wizard, Version=8.2.1.2, Culture=neutral, PublicKeyToken=6dfed4efb28d91d8</Assembly>
+		<FullClassName>VSTMC.Wizard.IWizardImplementation</FullClassName>
+	</WizardExtension>
+</VSTemplate>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup Label="ProjectConfigurations">
+		<ProjectConfiguration Include="Debug|x64">
+			<Configuration>Debug</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Release|x64">
+			<Configuration>Release</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+	</ItemGroup>
+
+	<PropertyGroup Label="Globals">
+		<ProjectGuid>{87B5A1A3-0F06-4A1A-A457-30D219A92C1C}</ProjectGuid>
+		<RootNamespace>$safeprojectname$</RootNamespace>
+		<ProjectName>$safeprojectname$</ProjectName>
+		<Keyword>ManagedCProj</Keyword>
+		<TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+		<WindowsTargetPlatformVersion>$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
+	</PropertyGroup>
+
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+		<ConfigurationType>DynamicLibrary</ConfigurationType>
+		<PlatformToolset>$(DefaultPlatformToolset)</PlatformToolset>
+		<CLRSupport>true</CLRSupport>
+		<CharacterSet>MultiByte</CharacterSet>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+		<ConfigurationType>DynamicLibrary</ConfigurationType>
+		<PlatformToolset>$(DefaultPlatformToolset)</PlatformToolset>
+		<CLRSupport>true</CLRSupport>
+		<CharacterSet>MultiByte</CharacterSet>
+	</PropertyGroup>
+
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+
+	<ImportGroup Label="ExtensionSettings" />
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+	</ImportGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+		<Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+	</ImportGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+		<OutDir>$(Bentley_MdlappsPath)</OutDir>
+		<IntDir>Debug\</IntDir>
+		<TargetName>$safeprojectname$</TargetName>
+		<ReferencePath>$(Bentley_ReferencePaths);$(ReferencePath)</ReferencePath>
+		<LinkIncremental>false</LinkIncremental>
+		<LocalDebuggerCommand>$(Bentley_AppPath)$(Bentley_App)</LocalDebuggerCommand>
+		<DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+		<IncludePath>$(Bentley_IncludePath);$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+		<LibraryPath>$(Bentley_LibraryPath);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<OutDir>$(Bentley_MdlappsPath)</OutDir>
+		<IntDir>Release\</IntDir>
+		<TargetName>$safeprojectname$</TargetName>
+		<ReferencePath>$(Bentley_ReferencePaths);$(ReferencePath)</ReferencePath>
+		<LinkIncremental>false</LinkIncremental>
+		<LocalDebuggerCommand>$(Bentley_AppPath)$(Bentley_App)</LocalDebuggerCommand>
+		<DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+		<IncludePath>$(Bentley_IncludePath);$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+		<LibraryPath>$(Bentley_LibraryPath);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+	</PropertyGroup>
+
+	<ItemDefinitionGroup>
+		<Reference>
+			<Private>False</Private>
+		</Reference>
+	</ItemDefinitionGroup>
+
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+		<ClCompile>
+			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+			<Optimization>Disabled</Optimization>
+			<AdditionalIncludeDirectories>$(Bentley_IncludePath);$(IntDir)objects;$(Bentley_SDKPath)objects;$(Bentley_IncludePathExtra)</AdditionalIncludeDirectories>
+			<AdditionalOptions>/favor:blend /EHc /c /Zo %(AdditionalOptions)</AdditionalOptions>
+			<ExceptionHandling>Async</ExceptionHandling>
+			<LanguageStandard>stdcpp14</LanguageStandard>
+			<PrecompiledHeader>Use</PrecompiledHeader>
+			<PrecompiledHeaderFile>Stdafx.h</PrecompiledHeaderFile>
+			<DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+		</ClCompile>
+		<Link>
+			<GenerateDebugInformation>true</GenerateDebugInformation>
+			<TargetMachine>MachineX64</TargetMachine>
+			<ImportLibrary>bin\debug\$(TargetName).lib</ImportLibrary>
+			<ProgramDatabaseFile>$(Bentley_MdlappsPath)$(TargetName).pdb</ProgramDatabaseFile>
+			<AdditionalLibraryDirectories>$(Bentley_LibraryPath)</AdditionalLibraryDirectories>
+			<AdditionalDependencies>bentley.lib;BentleyAllocator.lib;mdlbltin.lib;RmgrTools.lib;BentleyGeom.lib;DgnPlatform.lib;dgnview.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+		</Link>
+	</ItemDefinitionGroup>
+
+	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<ClCompile>
+			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+			<Optimization>MaxSpeed</Optimization>
+			<AdditionalIncludeDirectories>$(Bentley_IncludePath);$(IntDir)objects;$(Bentley_SDKPath)objects;$(Bentley_IncludePathExtra)</AdditionalIncludeDirectories>
+			<AdditionalOptions>/favor:blend /EHc /c /Zo %(AdditionalOptions)</AdditionalOptions>
+			<ExceptionHandling>Async</ExceptionHandling>
+			<LanguageStandard>stdcpp14</LanguageStandard>
+			<PrecompiledHeader>Use</PrecompiledHeader>
+			<PrecompiledHeaderFile>Stdafx.h</PrecompiledHeaderFile>
+		</ClCompile>
+		<Link>
+			<GenerateDebugInformation>false</GenerateDebugInformation>
+			<TargetMachine>MachineX64</TargetMachine>
+			<ImportLibrary>bin\release\$(TargetName).lib</ImportLibrary>
+			<ProgramDatabaseFile>$(Bentley_MdlappsPath)$(TargetName).pdb</ProgramDatabaseFile>
+			<AdditionalLibraryDirectories>$(Bentley_LibraryPath)</AdditionalLibraryDirectories>
+			<AdditionalDependencies>bentley.lib;BentleyAllocator.lib;mdlbltin.lib;RmgrTools.lib;BentleyGeom.lib;DgnPlatform.lib;dgnview.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+		</Link>
+	</ItemDefinitionGroup>
+
+	<ItemGroup>
+		<ClCompile Include="Stdafx.cpp">
+			<PrecompiledHeader>Create</PrecompiledHeader>
+		</ClCompile>
+		<ClCompile Include="MainAddin.cpp" />
+		<ClCompile Include="AppHost.cpp" />
+		<ClCompile Include="SessionService.cpp" />
+		<ClCompile Include="AssemblyInfo.cpp" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ClInclude Include="Stdafx.h" />
+		<ClInclude Include="MainAddin.h" />
+		<ClInclude Include="AppHost.h" />
+		<ClInclude Include="SessionService.h" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="ustation">
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Bentley.DgnDisplayNet">
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Bentley.DgnPlatformNET">
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Bentley.General.1.0">
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Bentley.GeometryNET">
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Bentley.MicroStation.Interfaces.1.0">
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Bentley.MicroStation">
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
+
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+	<ImportGroup Label="ExtensionTargets" />
+</Project>

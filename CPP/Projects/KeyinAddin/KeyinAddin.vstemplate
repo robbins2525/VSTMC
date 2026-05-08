@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0"
+            Type="Project"
+            xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+
+	<TemplateData>
+		<Name>MicroStation Native C++ Keyin Addin</Name>
+		<Description>
+			Creates a native C++ Addin project for MicroStation CONNECT Edition with key-in command support. Includes command resource files, translation kit scaffolding, and build configuration.
+		</Description>
+		<ProjectType>VC</ProjectType>
+		<LanguageTag>Cpp</LanguageTag>
+		<PlatformTag>Windows</PlatformTag>
+		<ProjectTypeTag>Desktop</ProjectTypeTag>
+
+		<SortOrder>1000</SortOrder>
+		<CreateNewFolder>true</CreateNewFolder>
+		<DefaultName>KeyinAddin</DefaultName>
+		<ProvideDefaultName>true</ProvideDefaultName>		
+
+		<Icon>__TemplateIcon.ico</Icon>
+		<PreviewImage>__PreviewImage.png</PreviewImage>
+
+		<Hidden>false</Hidden>
+	</TemplateData>
+
+	<TemplateContent>
+
+		<Project File="ProjectTemplate.vcxproj" TargetFileName="$safeprojectname$.vcxproj" ReplaceParameters="true">
+			<ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$.cpp" OpenInEditor="true">KeyinAddin.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$.h">KeyinAddin.h</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$.mke">KeyinAddin.mke</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$.r">KeyinAddin.r</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$cmd.r">KeyinAddincmd.r</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$ids.h">KeyinAddinids.h</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$rsc.mki">KeyinAddinrsc.mki</ProjectItem>
+
+			<ProjectItem ReplaceParameters="true" TargetFileName="english\$safeprojectname$msg.r">KeyinAddinmsg.r</ProjectItem>
+
+			<ProjectItem ReplaceParameters="true" TargetFileName="app\App.cpp">App.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="false" TargetFileName="app\App.h">App.h</ProjectItem>
+
+			<ProjectItem ReplaceParameters="true" TargetFileName="commands\KeyinHandlers.cpp">KeyinHandlers.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="false" TargetFileName="commands\KeyinHandlers.h">KeyinHandlers.h</ProjectItem>
+
+			<ProjectItem ReplaceParameters="true" TargetFileName="diagnostics\Logger.cpp">Logger.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="false" TargetFileName="diagnostics\Logger.h">Logger.h</ProjectItem>
+
+			<ProjectItem ReplaceParameters="true" TargetFileName="platform\BentleyApi.cpp">BentleyApi.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="false" TargetFileName="platform\BentleyApi.h">BentleyApi.h</ProjectItem>
+
+			<ProjectItem ReplaceParameters="false" TargetFileName="shared\Common.h">Common.h</ProjectItem>
+
+			<ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$.vcxproj.filters">ProjectTemplate.vcxproj.filters</ProjectItem>
+		</Project>
+
+		<CustomParameters>
+			<CustomParameter Name="$item$" Value="MicroStation Placement Tool Settings"/>
+			<CustomParameter Name="$language$" Value="CPP"/>			
+		</CustomParameters>
+	</TemplateContent>
+
+	<WizardExtension>
+		<Assembly>VSTMC.Wizard, Version=8.2.1.2, Culture=neutral, PublicKeyToken=6dfed4efb28d91d8</Assembly>
+		<FullClassName>VSTMC.Wizard.IWizardImplementation</FullClassName>
+	</WizardExtension>
+</VSTemplate>

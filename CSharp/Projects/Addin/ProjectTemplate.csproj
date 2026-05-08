@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="$ToolVersion$" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ImportGroup Label="PropertySheets" />
+	<ItemDefinitionGroup />
+
+	<!-- =========================================================
+       Global Properties
+       ========================================================= -->
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+
+		<ProductVersion>8.0.30703</ProductVersion>
+		<SchemaVersion>2.0</SchemaVersion>
+		<ProjectGuid>$guid1$</ProjectGuid>
+
+		<OutputType>Library</OutputType>
+		<OutputPath>$(Bentley_MdlappsPath)</OutputPath>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+
+		<AppDesignerFolder>Properties</AppDesignerFolder>
+		<RootNamespace>$safeprojectname$</RootNamespace>
+		<AssemblyName>$safeprojectname$</AssemblyName>
+
+		<TargetFrameworkVersion>v$targetframeworkversion$</TargetFrameworkVersion>
+		<Nullable>enable</Nullable>
+		<FileAlignment>512</FileAlignment>
+
+		<!-- Debug launch (shared by all configs unless overridden) -->
+		<StartAction>Program</StartAction>
+		<StartProgram>$(Bentley_AppPath)$(Bentley_App)</StartProgram>
+		<StartArguments />
+	</PropertyGroup>
+
+	<!-- =========================================================
+       Configuration Properties
+       ========================================================= -->
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<OutputPath>$(Bentley_MdlappsPath)</OutputPath>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<PlatformTarget>x64</PlatformTarget>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>$(Bentley_MdlappsPath)</OutputPath>
+		<DefineConstants>TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<PlatformTarget>x64</PlatformTarget>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Design|x64'">
+		<OutputPath>$(Bentley_MdlappsPath)</OutputPath>
+		<DefineConstants>DESIGN</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<ReferencePath>$(Bentley_ReferencePaths)</ReferencePath>
+	</PropertyGroup>
+
+	<!-- =========================================================
+       Defaults
+       ========================================================= -->
+	<ItemDefinitionGroup>
+		<Reference>
+			<Private>False</Private>
+		</Reference>
+	</ItemDefinitionGroup>
+
+	<!-- =========================================================
+       References
+       ========================================================= -->
+	<ItemGroup>
+		<!-- Bentley / MicroStation -->
+		<Reference Include="ustation" />
+		<Reference Include="Bentley.DgnDisplayNet" />
+		<Reference Include="Bentley.DgnPlatformNET" />
+		<Reference Include="Bentley.General.1.0" />
+		<Reference Include="Bentley.GeometryNET" />
+		<Reference Include="Bentley.MicroStation" />
+		<Reference Include="Bentley.Windowing" />
+		<Reference Include="Bentley.MicroStation.Interfaces.1.0" />
+		<Reference Include="Bentley.MicroStation.WPF" />
+		<Reference Include="Bentley.Interop.MicroStationDGN">
+			<EmbedInteropTypes>False</EmbedInteropTypes>
+			<Private>False</Private>
+		</Reference>
+
+		<!-- Wizard-injected references (keep as-is) -->
+		$reference$
+
+		<!-- .NET -->
+		<Reference Include="System" />
+		<Reference Include="System.Data" />
+		<Reference Include="System.Drawing" />
+		<Reference Include="System.Windows.Forms" />
+		<Reference Include="System.Xml" />
+		<Reference Include="Microsoft.CSharp" />
+	</ItemGroup>
+
+	<!-- =========================================================
+       Source Files
+       ========================================================= -->
+	<ItemGroup>
+		<Compile Include="Program.cs" />
+		<Compile Include="Properties\AssemblyInfo.cs" />
+
+		<Compile Include="Properties\Resources.Designer.cs">
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+
+		<Compile Include="Properties\Settings.Designer.cs">
+			<AutoGen>True</AutoGen>
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+			<DependentUpon>Settings.settings</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<!-- =========================================================
+       Resources / Content
+       ========================================================= -->
+	<ItemGroup>
+		<EmbeddedResource Include="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>		
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include=".editorconfig" />
+		<None Include="Directory.Build.props" />		
+	</ItemGroup>
+
+	<ItemGroup Condition="Exists('Commands.xml')">
+		<EmbeddedResource Update="Commands.xml">			
+			<LogicalName>CommandTable.xml</LogicalName>
+		</EmbeddedResource>
+	</ItemGroup>
+
+	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

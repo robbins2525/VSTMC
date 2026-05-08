@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+	<TemplateData>
+		<Name>MicroStation Managed C++ Addin (Bentley Style)</Name>
+		<Description>
+			Creates a managed C++/CLI Add-in project for MicroStation CONNECT Edition using Bentley SDK lifecycle patterns.
+Includes a MainAddin class with Run and OnUnloaded overrides, CLR configuration, assembly metadata, and application host
+scaffolding. Suitable for developers who want their add-in structure to match Bentley examples.
+		</Description>
+		<Icon>__TemplateIcon.ico</Icon>
+		<PreviewImage>__PreviewImage.png</PreviewImage>
+		<ProjectType>VC</ProjectType>
+		<LanguageTag>Cpp</LanguageTag>
+		<PlatformTag>Windows</PlatformTag>
+		<ProjectTypeTag>Desktop</ProjectTypeTag>
+		<RequiredFrameworkVersion>4.7.2</RequiredFrameworkVersion>
+		<SortOrder>1000</SortOrder>
+		<TemplateID>86272130-503e-4d9a-a0f1-9d8a18b60c33</TemplateID>
+		<CreateNewFolder>true</CreateNewFolder>
+		<DefaultName>MstnBentleyAddin</DefaultName>
+		<ProvideDefaultName>true</ProvideDefaultName>
+		<NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+		<Hidden>false</Hidden>
+	</TemplateData>
+
+	<TemplateContent>
+		<Project File="ProjectTemplate.vcxproj" ReplaceParameters="true">
+			<ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cpp">AssemblyInfo.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="true" TargetFileName="MainAddin.cpp">MainAddin.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false" TargetFileName="MainAddin.h">MainAddin.h</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false" TargetFileName="AppHost.cpp">AppHost.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false" TargetFileName="AppHost.h">AppHost.h</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false" TargetFileName="SessionService.cpp">SessionService.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false" TargetFileName="SessionService.h">SessionService.h</ProjectItem>						
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false" TargetFileName="stdafx.cpp">stdafx.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false" TargetFileName="stdafx.h">stdafx.h</ProjectItem>
+			<ProjectItem ReplaceParameters="true" OpenInEditor="false" TargetFileName="AssemblyInfo.cpp">AssemblyInfo.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$.vcxproj.filters">ProjectTemplate.vcxproj.filters</ProjectItem>
+		</Project>
+
+		<CustomParameters>
+			<CustomParameter Name="$language$" Value="VC"/>
+		</CustomParameters>
+	</TemplateContent>
+
+	<WizardExtension>
+		<Assembly>VSTMC.Wizard, Version=8.2.1.2, Culture=neutral, PublicKeyToken=6dfed4efb28d91d8</Assembly>
+		<FullClassName>VSTMC.Wizard.IWizardImplementation</FullClassName>
+	</WizardExtension>
+</VSTemplate>

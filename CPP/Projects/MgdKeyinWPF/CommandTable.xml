@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<KeyinTree xmlns="http://www.bentley.com/schemas/1.0/MicroStation/AddIn/KeyinTree.xsd">
+  <RootKeyinTable ID="root">
+    <Keyword SubtableRef="MainCommands"
+             CommandClass="MacroCommand"
+             CommandWord="$safeprojectname$">
+      <Options Required="true"/>
+    </Keyword>
+
+    <Keyword SubtableRef="AliasCommands"
+             CommandClass="MacroCommand"
+             CommandWord="MKA">
+      <Options Required="true" Hidden="true"/>
+    </Keyword>
+  </RootKeyinTable>
+
+  <SubKeyinTables>
+    <KeyinTable ID="MainCommands">
+      <Keyword CommandWord="OPEN"/>
+      <Keyword CommandWord="SHOW"/>
+      <Keyword CommandWord="HIDE"/>
+      <Keyword CommandWord="ABOUT"/>
+    </KeyinTable>
+
+    <KeyinTable ID="AliasCommands">
+      <Keyword CommandWord="OPEN"/>
+      <Keyword CommandWord="SHOW"/>
+      <Keyword CommandWord="HIDE"/>
+      <Keyword CommandWord="ABOUT"/>
+    </KeyinTable>
+  </SubKeyinTables>
+
+  <KeyinHandlers>
+    <KeyinHandler Keyin="$safeprojectname$ OPEN"
+                  Function="$safeprojectname$.KeyinCommands.OpenBentleyStyle"/>
+    <KeyinHandler Keyin="$safeprojectname$ SHOW"
+                  Function="$safeprojectname$.KeyinCommands.ShowBentleyStyle"/>
+    <KeyinHandler Keyin="$safeprojectname$ HIDE"
+                  Function="$safeprojectname$.KeyinCommands.HideBentleyStyle"/>
+    <KeyinHandler Keyin="$safeprojectname$ ABOUT"
+                  Function="$safeprojectname$.KeyinCommands.AboutBentleyStyle"/>
+
+    <KeyinHandler Keyin="MKA OPEN"
+                  Function="$safeprojectname$.KeyinCommands.OpenSimple"/>
+    <KeyinHandler Keyin="MKA SHOW"
+                  Function="$safeprojectname$.KeyinCommands.ShowSimple"/>
+    <KeyinHandler Keyin="MKA HIDE"
+                  Function="$safeprojectname$.KeyinCommands.HideSimple"/>
+    <KeyinHandler Keyin="MKA ABOUT"
+                  Function="$safeprojectname$.KeyinCommands.AboutSimple"/>
+  </KeyinHandlers>
+</KeyinTree>

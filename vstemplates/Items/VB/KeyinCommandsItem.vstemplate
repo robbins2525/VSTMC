@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+	<TemplateData>
+		<Name>Key-In Command Table</Name>
+		<Description>A project item to create a Commands.xml file and a KeyinCommands.cs file mapped to the command.xml. One command table is allowed per project.</Description>
+		<Icon>__TemplateIcon.ico</Icon>
+		<PreviewImage>__PreviewImage.png</PreviewImage>
+		<TemplateID>d5f17fc9-e77d-4127-a27f-3ad27f754b07</TemplateID>
+		<SortOrder>1000</SortOrder>
+		<DefaultName>KeyinCommands.vb</DefaultName>
+		<ProjectType>VisualBasic</ProjectType>
+		<RequiredFrameworkVersion>4.7.2</RequiredFrameworkVersion>
+		<NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+		<Hidden>false</Hidden>
+	</TemplateData>
+
+	<TemplateContent>
+		<References>
+			<Reference>
+				<Assembly>System</Assembly>
+			</Reference>
+		</References>
+
+		<ProjectItem ReplaceParameters="true" TargetFileName="KeyinCommands.vb">KeyinCommands.vb</ProjectItem>
+		<ProjectItem ReplaceParameters="true" TargetFileName="Commands.xml" ItemType="EmbeddedResource" SubType="Designer">Commands.xml</ProjectItem>
+
+		<CustomParameters>
+			<CustomParameter Name="$item$" Value="MicroStation Key-In Command Table"/>
+			<CustomParameter Name="$language$" Value="VisualBasic"/>
+		</CustomParameters>
+	</TemplateContent>
+
+	<WizardExtension>
+		<Assembly>VSTMC.Wizard, Version=8.2.1.2, Culture=neutral, PublicKeyToken=6dfed4efb28d91d8</Assembly>
+		<FullClassName>VSTMC.Wizard.IWizardImplementation</FullClassName>
+	</WizardExtension>
+</VSTemplate>

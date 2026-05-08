@@ -1,0 +1,377 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Visual Studio Tools for MicroStation CONNECT Edition</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="brand">
+                <h1>VSTMC Help</h1>
+                <p>Visual Studio Tools for MicroStation CONNECT Edition</p>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#whats-new">What’s New in This Edition</a></li>
+                    <li><a href="#system-requirements">System Requirements</a></li>
+                    <li><a href="#supported-products">Supported Bentley Products</a></li>
+                    <li><a href="#developer-resources">Developer Resources</a></li>
+                    <li><a href="#project-templates">Project Templates</a></li>
+                    <li><a href="#item-templates">Item Templates</a></li>
+                    <li><a href="#code-snippets">Code Snippets</a></li>
+                    <li><a href="#command-table">Commands.xml and Key-ins</a></li>
+                    <li><a href="#keyin-tree">Key-in Tree</a></li>
+                    <li><a href="#schemas">Schemas and IntelliSense</a></li>
+                    <li><a href="#tools-menu">Extension Tools</a></li>
+                    <li><a href="#bentley-import-tool">Bentley Import Tool</a></li>
+                    <li><a href="#open-folders">Open Folder Commands</a></li>
+                    <li><a href="#forums">Search Bentley Forums</a></li>
+                    <li><a href="#references">Bentley References</a></li>
+                    <li><a href="#forms-wpf">Windows Forms and WPF</a></li>
+                    <li><a href="#option-page">Options Page</a></li>
+                    <li><a href="#build-batch">Build Batch Examples</a></li>
+                    <li><a href="#help-system">Help System</a></li>
+                    <li><a href="#release-notes">Release Notes</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <header class="hero">
+                <span class="eyebrow">Offline Documentation</span>
+                <h2>Visual Studio Tools for MicroStation CONNECT Edition</h2>
+                <p>
+                    Visual Studio Tools for MicroStation CONNECT Edition integrates project templates,
+                    item templates, snippets, schema support, and productivity commands into Visual Studio
+                    to streamline Bentley add-in development across .NET and native workflows.
+                </p>
+            </header>
+
+            <section id="introduction" class="card">
+                <h3>Introduction</h3>
+                <p>
+                    VSTMC is an extension for Bentley-focused developers who build MicroStation CONNECT Edition
+                    add-ins and related tools in C#, Visual Basic, and native C++. It packages common project
+                    scaffolding, command table support, key-in helpers, schemas, snippets, and convenience tools
+                    into one development companion.
+                </p>
+                <p>
+                    The original CHM help system organized topics around templates, tools, and setup tasks.
+                    This HTML edition keeps the same spirit, but makes the content easier to maintain, update,
+                    and browse in a modern browser.
+                </p>
+            </section>
+
+            <section id="whats-new" class="card">
+                <h3>What’s New in This Edition</h3>
+                <ul>
+                    <li>Documentation is transitioning from legacy CHM help to HTML help.</li>
+                    <li>Minimum supported Visual Studio is now <strong>Visual Studio 2022</strong>.</li>
+                    <li>Bentley Help topics can be surfaced from the Help menu as a proper submenu of clickable items.</li>
+                    <li>Templates and generated code are being modernized for cleaner C# and VB patterns.</li>
+                    <li>Nullable-aware C# patterns may be used where project configuration supports them.</li>
+                </ul>
+            </section>
+
+            <section id="system-requirements" class="card">
+                <h3>System Requirements</h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Minimum</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Visual Studio</td>
+                                <td>2022</td>
+                                <td>This edition targets modern Visual Studio workflows.</td>
+                            </tr>
+                            <tr>
+                                <td>.NET Framework Projects</td>
+                                <td>Commonly 4.8</td>
+                                <td>Bentley add-in projects often remain on .NET Framework for compatibility.</td>
+                            </tr>
+                            <tr>
+                                <td>Bentley SDK / Product Paths</td>
+                                <td>Required</td>
+                                <td>Commands and templates rely on Bentley environment variables and installed SDK content.</td>
+                            </tr>
+                            <tr>
+                                <td>Windows</td>
+                                <td>Required</td>
+                                <td>MicroStation and related Bentley developer workflows are Windows-based.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="note">
+                    Exact Bentley product and SDK compatibility can vary by release. Keep template documentation aligned
+                    with the currently supported Bentley product set for your extension version.
+                </p>
+            </section>
+
+            <section id="supported-products" class="card">
+                <h3>Supported Bentley Products</h3>
+                <p>
+                    The legacy help included a dedicated page for supported Bentley products. In practice, support depends
+                    on the project template selected, installed SDKs, and available references for the target Bentley application.
+                </p>
+                <p>
+                    Typical supported product families include MicroStation CONNECT Edition and related Bentley platform products
+                    such as OpenRoads, OpenRail, OpenBridge, OpenPlant, and others when the proper SDK components are installed.
+                </p>
+                <p class="note">
+                    Keep this section version-specific. It is better to maintain a clear list for the current VSTMC release than
+                    to carry a fossil bed of old version names.
+                </p>
+            </section>
+
+            <section id="developer-resources" class="card">
+                <h3>Developer Resources</h3>
+                <p>
+                    Bentley’s documentation and community ecosystem changes over time, so the most reliable approach is to link
+                    to stable resource hubs rather than deep versioned topic URLs.
+                </p>
+                <ul>
+                    <li>
+                        <a href="https://docs.bentley.com/" target="_blank" rel="noopener noreferrer">
+                            Bentley Product Documentation
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://bentleysystems.service-now.com/community/" target="_blank" rel="noopener noreferrer">
+                            Bentley Communities
+                        </a>
+                    </li>
+                    <!--<li>
+                        <a href="https://docs.bentley.com/LiveContent/web/OpenRoads%20Designer%20SDK-v2025/Help/en/topics/2935877/GUID-0D516538-1220-4FDA-B366-2A757DDAEDAC.html/" target="_blank" rel="noopener noreferrer">
+                            OpenRoads V2025 SDK Help
+                        </a>
+                    </li>-->
+                </ul>
+                <p class="note">
+                    Deep links into versioned Bentley documentation may change as content is rebuilt or product versions advance.
+                    Link to stable hubs when possible, and use community search for broader discovery.
+                </p>
+            </section>
+
+            <section id="project-templates" class="card">
+                <h3>Project Templates</h3>
+                <p>
+                    Project templates provide the starting structure for Bentley add-in development. The original help included
+                    separate descriptions for C# and VB.NET project templates and how they mapped to Bentley applications.
+                </p>
+                <ul>
+                    <li>Create starter projects wired for Bentley add-in loading.</li>
+                    <li>Inject common references and package metadata.</li>
+                    <li>Provide Commands.xml scaffolding and startup classes.</li>
+                    <li>Offer Bentley product-specific setup where applicable.</li>
+                </ul>
+            </section>
+
+            <section id="item-templates" class="card">
+                <h3>Item Templates</h3>
+                <p>
+                    Item templates are one of the biggest time-savers in VSTMC. They generate common Bentley development building
+                    blocks such as selection tools, placement tools, forms, WPF controls, primitive tools, command helpers,
+                    and scan criteria extensions.
+                </p>
+                <ul>
+                    <li>Selection Tools</li>
+                    <li>Placement Tools</li>
+                    <li>Primitive Tools</li>
+                    <li>Windows Forms</li>
+                    <li>WPF UserControls</li>
+                    <li>Command helpers and utility classes</li>
+                </ul>
+                <p>
+                    The modernized templates aim to produce cleaner generated code while preserving Bentley-specific wiring where needed.
+                </p>
+            </section>
+
+            <section id="code-snippets" class="card">
+                <h3>Code Snippets</h3>
+                <p>
+                    The legacy help documented snippet support for quickly inserting common code structures into Bentley add-in projects.
+                    Snippets can speed up repetitive tasks such as command wiring, tool setup, and helper method generation.
+                </p>
+            </section>
+
+            <section id="command-table" class="card">
+                <h3>Commands.xml and Key-ins</h3>
+                <p>
+                    Commands.xml remains a central piece of Bentley add-in development. VSTMC helps wire command handlers,
+                    key-ins, keywords, and other command table elements into the project structure.
+                </p>
+                <ul>
+                    <li>Generate key-in handlers</li>
+                    <li>Insert new command entries when templates are added</li>
+                    <li>Keep command table structure aligned with generated code</li>
+                    <li>Support IntelliSense and schema-driven editing</li>
+                </ul>
+            </section>
+
+            <section id="keyin-tree" class="card">
+                <h3>Key-in Tree</h3>
+                <p>
+                    The key-in tree organizes command definitions and helps structure command hierarchies in a more readable way.
+                    This area of the original help covered the tree format and related schema support.
+                </p>
+            </section>
+
+            <section id="schemas" class="card">
+                <h3>Schemas and IntelliSense</h3>
+                <p>
+                    VSTMC includes support for command table and key-in tree schema files so that XML editing inside Visual Studio
+                    is more discoverable and less error-prone.
+                </p>
+                <ul>
+                    <li>Command table IntelliSense</li>
+                    <li>Key-in tree schema support</li>
+                    <li>Schema file insertion helpers</li>
+                </ul>
+            </section>
+
+            <section id="tools-menu" class="card">
+                <h3>Extension Tools</h3>
+                <p>
+                    The extension adds several productivity commands to Visual Studio. These tools reduce friction when working
+                    with Bentley SDKs, folders, forums, and help content.
+                </p>
+                <div class="chips">
+                    <span>Native Import</span>
+                    <span>Open SDK Folder</span>
+                    <span>Open MDLAPPS Folder</span>
+                    <span>Open MSCE Folder</span>
+                    <span>Search Bentley Forums</span>
+                    <span>Bentley Help</span>
+                    <span>VSTMC Help</span>
+                </div>
+            </section>
+
+            <section id="bentley-import-tool" class="card">
+                <h3>Bentley Import Tool</h3>
+                <p>
+                    Bentley Import Tool helps bring Bentley application content into the project workflow.
+                    The older help documented this as one of the main productivity tools in the extension.
+                </p>
+                <p>
+                    This feature is especially useful when bridging managed and native Bentley development or when integrating
+                    existing native assets into a Visual Studio-based workflow.
+                </p>
+            </section>
+
+            <section id="open-folders" class="card">
+                <h3>Open Folder Commands</h3>
+                <p>
+                    Folder-opening commands are convenience shortcuts that launch common Bentley-related folders in File Explorer.
+                    These are typically driven by environment variables and project context.
+                </p>
+                <ul>
+                    <li>Open Bentley SDK Folder</li>
+                    <li>Open MDLAPPS Folder</li>
+                    <li>Open MSCE Folder</li>
+                </ul>
+                <p class="note">
+                    If these commands appear to do nothing, verify the environment variables and target folder paths used by the command logic.
+                </p>
+            </section>
+
+            <section id="forums" class="card">
+                <h3>Search Bentley Forums</h3>
+                <p>
+                    This tool uses the current text selection in the editor to search Bentley Communities more quickly.
+                    It is helpful when error messages, class names, or API terms need a quick lookup in community discussions.
+                </p>
+                <p>
+                    For better results, this workflow can also be paired with broader web search strategies that target
+                    Bentley Communities specifically, rather than relying on deep documentation URLs that may shift over time.
+                </p>
+            </section>
+
+            <section id="references" class="card">
+                <h3>Bentley References</h3>
+                <p>
+                    One of the quiet but important jobs performed by the extension is adding or shaping Bentley assembly references
+                    based on the selected project and Bentley product context.
+                </p>
+                <p>
+                    Legacy help pages showed product-specific reference injection and project setup. This HTML edition should continue
+                    documenting those patterns, especially where product-specific references differ.
+                </p>
+            </section>
+
+            <section id="forms-wpf" class="card">
+                <h3>Windows Forms and WPF</h3>
+                <p>
+                    The original help documented both WinForms and WPF templates, including tool settings windows and user controls.
+                    These remain useful for Bentley add-in UI scenarios.
+                </p>
+                <ul>
+                    <li>Windows Form templates for simple dialog-based workflows</li>
+                    <li>WPF UserControl templates for richer UI composition</li>
+                    <li>Tool settings integration patterns</li>
+                </ul>
+            </section>
+
+            <section id="option-page" class="card">
+                <h3>Options Page</h3>
+                <p>
+                    VSTMC includes an options page for extension settings. The legacy help captured screenshots and guidance for
+                    configuring the extension. This section should remain the home for path settings, feature toggles, and future customization.
+                </p>
+            </section>
+
+            <section id="build-batch" class="card">
+                <h3>Build Batch Examples</h3>
+                <p>
+                    The old CHM included examples for C++ build batch files and startup helpers. These examples are still useful
+                    for native and mixed-workflow developers and should remain documented in HTML form.
+                </p>
+            </section>
+
+            <section id="help-system" class="card">
+                <h3>Help System</h3>
+                <p>
+                    The VSTMC help system is now transitioning from CHM-based help to HTML help. HTML help is easier to maintain,
+                    safer to open, easier to style, and simpler to expand into multi-page documentation later.
+                </p>
+                <p>
+                    Bentley Help items can also be surfaced in Visual Studio as a submenu of clickable CHM topics while the broader
+                    documentation system transitions to HTML.
+                </p>
+            </section>
+
+            <section id="release-notes" class="card">
+                <h3>Release Notes</h3>
+                <p>
+                    Use this section to track template modernization, command fixes, Visual Studio support changes, Bentley product
+                    support updates, and help system migration notes.
+                </p>
+                <ul>
+                    <li>Moved VSTMC help from CHM toward HTML.</li>
+                    <li>Modernized menu handling for Bentley Help topics.</li>
+                    <li>Updated baseline documentation to Visual Studio 2022.</li>
+                </ul>
+            </section>
+
+            <footer class="footer">
+                <p>© 2013–<span id="year"></span> Marty Robbins, VSTMC — Visual Studio Tools for MicroStation CONNECT Edition</p>
+            </footer>
+
+            <script>
+                document.getElementById("year").textContent = new Date().getFullYear();
+            </script>
+        </main>
+    </div>
+</body>
+</html>

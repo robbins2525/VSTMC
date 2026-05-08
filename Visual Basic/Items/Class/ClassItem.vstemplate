@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+	<TemplateData>
+		<Name>Class</Name>
+		<Description>MicroStation empty class definition.</Description>
+		<Icon>__TemplateIcon.ico</Icon>
+		<PreviewImage>__PreviewImage.png</PreviewImage>
+		<TemplateID>72fab852-3cca-4056-83c6-245cb2bf9934</TemplateID>
+		<SortOrder>1000</SortOrder>
+		<ProjectType>VisualBasic</ProjectType>
+		<RequiredFrameworkVersion>4.7.2</RequiredFrameworkVersion>
+		<NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+		<Hidden>false</Hidden>
+		<DefaultName>Class.vb</DefaultName>
+	</TemplateData>
+
+	<TemplateContent>
+		<References>
+			<Reference>
+				<Assembly>System</Assembly>
+			</Reference>
+		</References>
+
+		<ProjectItem ReplaceParameters="true">MSClass.vb</ProjectItem>
+
+		<CustomParameters>
+			<CustomParameter Name="$item$" Value="MicroStation Class"/>
+			<CustomParameter Name="$language$" Value="VisualBasic"/>
+		</CustomParameters>
+	</TemplateContent>
+
+	<WizardExtension>
+		<Assembly>VSTMC.Wizard, Version=8.2.1.2, Culture=neutral, PublicKeyToken=6dfed4efb28d91d8</Assembly>
+		<FullClassName>VSTMC.Wizard.IWizardImplementation</FullClassName>
+	</WizardExtension>
+</VSTemplate>

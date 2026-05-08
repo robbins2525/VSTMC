@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+	<TemplateData>
+		<Name>DgnElementSetTool Selection Tool (MicroStation Native C++)</Name>
+		<Description>Generates a MicroStation native selection tool using DgnElementSetTool.</Description>
+		<Icon>__TemplateIcon.ico</Icon>
+		<PreviewImage>__PreviewImage.png</PreviewImage>
+		<ProjectType>VC</ProjectType>		
+		<SortOrder>1000</SortOrder>
+		<TemplateID>2183ccd1-76b6-47d8-bc62-cae7fbaa983e</TemplateID>	
+		<DefaultName>SelectionTool.cpp</DefaultName>		
+		<NumberOfParentCategoriesToRollUp>0</NumberOfParentCategoriesToRollUp>
+		<Hidden>false</Hidden>
+	</TemplateData>
+
+	<TemplateContent>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="true" TargetFileName="Source Files\$safeitemname$.cpp">SelectionTool.cpp</ProjectItem>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="false" TargetFileName="Header Files\$safeitemname$.h">SelectionTool.h</ProjectItem>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="true" TargetFileName="Documentation\$safeitemname$.md">SelectionTool.md</ProjectItem>
+		<CustomParameters>
+			<CustomParameter Name="$item$" Value="Selection Tool Settings"/>
+			<CustomParameter Name="$language$" Value="CPP"/>
+		</CustomParameters>
+	</TemplateContent>
+
+	<WizardExtension>
+		<Assembly>VSTMC.Wizard, Version=8.2.1.2, Culture=neutral, PublicKeyToken=6dfed4efb28d91d8</Assembly>
+		<FullClassName>VSTMC.Wizard.IWizardImplementation</FullClassName>
+	</WizardExtension>
+</VSTemplate>

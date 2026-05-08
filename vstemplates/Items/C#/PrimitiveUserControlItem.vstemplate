@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+	<TemplateData>
+		<Name>IPrimitive User Control (WPF)</Name>
+		<Description>Creates an IPrimitiveCommand implementation with a WPF UI wrapper. Use for modern, modeless command tools and richer UI inside MicroStation CONNECT.</Description>
+		<Icon>__TemplateIcon.ico</Icon>
+		<PreviewImage>__PreviewImage.png</PreviewImage>
+		<TemplateID>93CC35AB-16C1-40F5-B500-17BFEF5D4CB5</TemplateID>
+		<ProjectType>CSharp</ProjectType>
+		<RequiredFrameworkVersion>4.7.2</RequiredFrameworkVersion>
+		<NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+		<Hidden>false</Hidden>
+		<DefaultName>PrimitiveUserControl.xaml</DefaultName>
+	</TemplateData>
+
+	<TemplateContent>
+		<References>
+			<Reference>
+				<Assembly>System.Drawing</Assembly>
+			</Reference>
+			<Reference>
+				<Assembly>System.Windows.Forms</Assembly>
+			</Reference>
+			<Reference>
+				<Assembly>System.Xaml</Assembly>
+			</Reference>
+			<Reference>
+				<Assembly>PresentationCore</Assembly>
+			</Reference>
+			<Reference>
+				<Assembly>PresentationFramework</Assembly>
+			</Reference>
+			<Reference>
+				<Assembly>WindowsBase</Assembly>
+			</Reference>
+			<Reference>
+				<Assembly>WindowsFormsIntegration</Assembly>
+			</Reference>
+			<Reference>
+				<Assembly>Bentley.UI</Assembly>
+			</Reference>
+			<Reference>
+				<Assembly>Bentley.UI.Vendor.WPF</Assembly>
+			</Reference>
+			<Reference>
+				<Assembly>Bentley.RibbonView</Assembly>
+			</Reference>
+			<Reference>
+				<Assembly>Bentley.MicroStation.Ribbon</Assembly>
+			</Reference>
+		</References>
+
+		<!-- Tool class -->
+		<ProjectItem ReplaceParameters="true" TargetFileName="$fileinputname$.cs">PrimitiveUserControl.cs</ProjectItem>
+
+		<!-- UserControl nested under the tool class via TargetFileName path -->
+		<ProjectItem ReplaceParameters="true" TargetFileName="$fileinputname$.cs\$fileinputname$.xaml" DependentUpon="$fileinputname$.cs">UserControl.xaml</ProjectItem>
+
+		<!-- Code-behind nested under the XAML -->
+		<ProjectItem ReplaceParameters="true" TargetFileName="$fileinputname$.xaml.cs" DependentUpon="$fileinputname$.xaml">UserControl.xaml.cs</ProjectItem>
+
+		<CustomParameters>
+			<CustomParameter Name="$item$" Value="MicroStation IPrimitive Tool Settings WPF"/>
+			<CustomParameter Name="$language$" Value="CSharp"/>
+		</CustomParameters>
+	</TemplateContent>
+
+	<WizardExtension>
+		<Assembly>VSTMC.Wizard, Version=8.2.1.2, Culture=neutral, PublicKeyToken=6dfed4efb28d91d8</Assembly>
+		<FullClassName>VSTMC.Wizard.IWizardImplementation</FullClassName>
+	</WizardExtension>
+</VSTemplate>

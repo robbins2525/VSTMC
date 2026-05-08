@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+	<TemplateData>
+		<Name>DgnPrimitiveTool Placement Tool (MicroStation Native C++)</Name>
+		<Description>Generates a MicroStation native placement tool using DgnPrimitiveTool.</Description>
+		<Icon>__TemplateIcon.ico</Icon>
+		<PreviewImage>__PreviewImage.png</PreviewImage>
+		<ProjectType>VC</ProjectType>		
+		<SortOrder>1000</SortOrder>
+		<TemplateID>43fd5bac-f512-4990-bc66-4507facffeb2</TemplateID>	
+		<DefaultName>PlacementTool.cpp</DefaultName>		
+		<NumberOfParentCategoriesToRollUp>0</NumberOfParentCategoriesToRollUp>
+		<Hidden>false</Hidden>
+	</TemplateData>
+
+	<TemplateContent>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="true" TargetFileName="Source Files\$safeitemname$.cpp">PlacementTool.cpp</ProjectItem>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="false" TargetFileName="Header Files\$safeitemname$.h">PlacementTool.h</ProjectItem>
+		<ProjectItem ReplaceParameters="true" OpenInEditor="true" TargetFileName="Documentation\$safeitemname$.md">PlacementTool.md</ProjectItem>
+		<CustomParameters>
+			<CustomParameter Name="$item$" Value="MicroStation Placement Tool"/>
+			<CustomParameter Name="$language$" Value="CPP"/>
+		</CustomParameters>
+	</TemplateContent>
+
+	<WizardExtension>
+		<Assembly>VSTMC.Wizard, Version=8.2.1.2, Culture=neutral, PublicKeyToken=6dfed4efb28d91d8</Assembly>
+		<FullClassName>VSTMC.Wizard.IWizardImplementation</FullClassName>
+	</WizardExtension>
+</VSTemplate>

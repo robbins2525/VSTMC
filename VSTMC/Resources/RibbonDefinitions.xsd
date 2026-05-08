@@ -1,0 +1,2334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- =====================================================================================
+|
+|     $Source: workspace/System/GUI/Ribbon/RibbonDefinitions.xsd $
+|
+|  $Copyright: (c) 2016 Bentley Systems, Incorporated. All rights reserved. $
+|
+======================================================================================= -->
+<xs:schema id="RibbonItems" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:simpleType name="DropDownContentType">
+        <xs:annotation>
+            <xs:documentation>
+                Specifies the type of DropDown Content to be either a DropDown Panel or contain Menu Items
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MenuItems" />
+            <xs:enumeration value="PanelItems" />
+            <xs:enumeration value="DgnlibBasedItems" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="GroupZoneType">
+        <xs:annotation>
+            <xs:documentation>
+                Specifies the Position Mapping Zone that is used to determine auto-generated KeyTips. Task is the default GroupType.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Task" />
+            <xs:enumeration value="Main" />
+            <xs:enumeration value="Attributes" />
+            <xs:enumeration value="Primary" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="DataTreeType">
+        <xs:annotation>
+            <xs:documentation>
+                Specifies the type of XDataTreeNodes to be used to populate menu items
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Task" />
+            <xs:enumeration value="NamedToolbox" />
+            <xs:enumeration value="MainTask" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="DefinitionMatchProcessingType">
+        <xs:annotation>
+            <xs:documentation>
+                Specify what to do when a definition is encountered that is already in the Definition Cache.
+                Ignore   = Ignore this item, use previous definition
+                Override = Override existing definition with current
+                Merge    = If Contain merge contents
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Ignore" />
+            <xs:enumeration value="Override" />
+            <xs:enumeration value="Merge" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ReferenceMatchProcessingType">
+        <xs:annotation>
+            <xs:documentation>
+                Specify what to do when a reference to an existing definition is encountered.
+                Ignore = Ignore this item, use previous definition
+                Remove =  Remove the item from the cache, which means that the item will not be available to add to any Ribbon.
+                Override = Override existing sort priority and access text in matching definition or reference
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Ignore" />
+            <xs:enumeration value="Remove" />
+            <xs:enumeration value="Override" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="BackstageItemContentType">
+        <xs:annotation>
+            <xs:documentation>
+                BackStageCommand    = Content that defines a command to execute.
+                BackstageButtonList = Content that contain a list of groups.
+                BackstageGroupList  = Content that contain a list of buttons.
+                Separator           = Draws separator in between items.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BackStageCommand" />
+            <xs:enumeration value="BackstageButtonList" />
+            <xs:enumeration value="BackstageGroupList" />
+            <xs:enumeration value="Separator" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="DropDownPanelType">
+        <xs:annotation>
+            <xs:documentation>
+                VerticalStacked    = panel that stacks items vertically
+                HorizontalStacked  = panel that stacks items horizontally.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="VerticalStacked" />
+            <xs:enumeration value="HorizontalStacked" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="GroupPanelType">
+        <xs:annotation>
+            <xs:documentation>
+                VerticalStacked    = panel that stacks items vertically (using this type will inhibit the ability to override size by group).
+                HorizontalStacked  = panel that stacks items horizontally (using this type will inhibit the ability to override size by group).
+                Collapsible        = panel that allows contained buttons to be resized or collapsed.
+                OrderedWrap        = panel that wraps items into a max of 3 rows. This panel also resizes it contained buttons as necessary.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="VerticalStacked" />
+            <xs:enumeration value="HorizontalStacked" />
+            <xs:enumeration value="Collapsible" />
+            <xs:enumeration value="OrderedWrap" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="VerticalAlignmentType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Top" />
+            <xs:enumeration value="Bottom" />
+            <xs:enumeration value="Center" />
+            <xs:enumeration value="Stretch" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="HorizontalAlignmentType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Left" />
+            <xs:enumeration value="Right" />
+            <xs:enumeration value="Center" />
+            <xs:enumeration value="Stretch" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="IconRscType">
+        <xs:annotation>
+            <xs:documentation>
+                SmallOrLarge = 0,
+                Bitmap = 1114207309,
+                SmallOrLargeBitmap = 1114919756,
+                Custom = 1231253358,
+                WindowsIcon = 1464427374,
+                Large = 1766018151,
+                Small = 1766019949,
+                IconPopup = 1766879088,
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SmallOrLarge" />
+            <xs:enumeration value="Bitmap" />
+            <xs:enumeration value="SmallOrLargeBitmap" />
+            <xs:enumeration value="Custom" />
+            <xs:enumeration value="WindowsIcon" />
+            <xs:enumeration value="Large" />
+            <xs:enumeration value="Small" />
+            <xs:enumeration value="IconPopup" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="IconType">
+        <xs:annotation>
+            <xs:documentation>
+                NamedIcon - specifies look-up name for icon
+                RscIcon   - specifies RscType, Id, and owner
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NamedIcon" />
+            <xs:enumeration value="RscIcon" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="CollapseThresholdType">
+        <xs:annotation>
+            <xs:documentation>
+                Specifiy button resize options based on group size.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Never" />
+            <xs:enumeration value="WhenGroupIsMedium" />
+            <xs:enumeration value="WhenGroupIsSmall" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ButtonSizeType">
+        <xs:annotation>
+            <xs:documentation>
+                Specifiy button size.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Small" />
+            <xs:enumeration value="Medium" />
+            <xs:enumeration value="Large" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="NameType">
+        <xs:annotation>
+            <xs:documentation>
+                Specifiy name of a ribbon component. Characters limited to a-z A-Z 0-9_.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[_.a-zA-Z0-9\-]+" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ResizePriority">
+        <xs:annotation>
+            <xs:documentation>
+                Specifiy priority used by ribbon to determine the order of group resizing.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0" />
+            <xs:maxInclusive value="10000" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="CommandType">
+        <xs:annotation>
+            <xs:documentation>
+                Specifiy the type of command. NamedCommand(XCommand), ApplicationRefCommand(Iconcmd), or UserKeyinCommand size.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NamedCommand" />
+            <xs:enumeration value="ApplicationRefCommand" />
+            <xs:enumeration value="UserKeyinCommand" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="ApplicationParams">
+        <xs:complexType>
+        <xs:sequence>
+            <xs:element name="ApplicationParam" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                        <xs:element name="Value" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ApplicationItemsKeyTips">
+        <xs:annotation>
+            <xs:documentation>
+                Specifiy a collection of Key Tips for items contained in an application provided container like a Tab or a Group.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ApplicationItem" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="AccessText" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="PopupAccessText" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="GroupLauncherAccessText" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                        </xs:sequence>
+                        <xs:attribute name="Name" type="NameType" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+
+    <xs:element name="Visibility">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ShowExpression" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="FeatureAspect" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="HiddenByDefault" type="xs:boolean"  use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Icon">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="NamedIcon" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="RscIcon" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="RscType" type="IconRscType" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="RscId" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="TaskId" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="Type" type="IconType" />
+    </xs:complexType>
+
+    <xs:element name="Icon">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="Icon"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UserKeyinCommand">
+        <xs:complexType>
+            <xs:choice minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="Label" type="xs:string" minOccurs="0" />
+                <xs:element name="Description" type="xs:string" minOccurs="0" />
+                <xs:element name="Keyin" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                <xs:element ref="Icon" minOccurs="0" maxOccurs="1" />
+                <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+                <xs:element name="EnableExpression" type="xs:string"  minOccurs="0" maxOccurs="1" />
+                <xs:element name="ToggleExpression" type="xs:string"  minOccurs="0" maxOccurs="1" />
+                <xs:element name="MenuMarkExpression" type="xs:string"  minOccurs="0" maxOccurs="1" />
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    
+    <xs:element name="ApplicationRefCommand">
+        <xs:complexType>
+            <xs:choice minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="Label" type="xs:string" minOccurs="0" />
+                <xs:element name="Description" type="xs:string" minOccurs="0" />
+                <xs:element name="TaskId" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="CmdNumber" type="xs:unsignedLong" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="CmdParameters" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="Icon" minOccurs="0" maxOccurs="1" />
+                <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+                <xs:element name="EnableExpression" type="xs:string"  minOccurs="0" maxOccurs="1" />
+                <xs:element name="ToggleExpression" type="xs:string"  minOccurs="0" maxOccurs="1" />
+                <xs:element name="MenuMarkExpression" type="xs:string"  minOccurs="0" maxOccurs="1" />
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="CheckedIcon">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="Icon"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="UncheckedIcon">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="Icon"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DisabledIcon">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="Icon"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- =================================================================================
+        Parameters
+    ============================================================================== -->
+
+    <xs:element name="TabSetParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="WorkflowParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="BackstageGroupParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GroupPanelParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+            </xs:choice>
+            <xs:attribute name="AddSeparatorBefore" type="xs:boolean" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        This option is only ensured to work if the panel is a root panel directly in a ribbon group. A separator will not be shown if this is the first panel in a group.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="TabParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="AccessText" type="xs:string" minOccurs="0" />
+                <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="ApplicationParams" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="ApplicationItemsKeyTips" minOccurs="0" maxOccurs="1"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RibbonParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="Label" type="xs:string" minOccurs="0" />
+                <xs:element name="Description" type="xs:string" minOccurs="0" />
+                <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="ApplicationParams" minOccurs="0" maxOccurs="1"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DropDownButtonParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="AccessText" type="xs:string" minOccurs="0" />
+                <xs:element name="PopupAccessText" type="xs:string" minOccurs="0" />
+                <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+                <xs:element name="EnableExpression" type="xs:string"  minOccurs="0" maxOccurs="1" />
+                <xs:element ref="ApplicationParams" minOccurs="0" maxOccurs="1"/>
+            </xs:choice>
+            <xs:attribute name="Size" type="ButtonSizeType" />
+            <xs:attribute name="CollapseToSmall" type="CollapseThresholdType" />
+            <xs:attribute name="CollapseToMedium" type="CollapseThresholdType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ToggleButtonParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="AccessText" type="xs:string" minOccurs="0" />
+                <xs:element name="PopupAccessText" type="xs:string" minOccurs="0" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="ApplicationParams" minOccurs="0" maxOccurs="1"/>
+            </xs:choice>
+            <xs:attribute name="Size" type="ButtonSizeType" />
+            <xs:attribute name="CollapseToSmall" type="CollapseThresholdType" />
+            <xs:attribute name="CollapseToMedium" type="CollapseThresholdType" />
+            <xs:attribute name="ShowLabelOnly" type="xs:boolean" use="optional" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GalleryParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="AccessText" type="xs:string" minOccurs="0" />
+                <xs:element name="PopupAccessText" type="xs:string" minOccurs="0" />
+                <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="ApplicationParams" minOccurs="0" maxOccurs="1"/>
+            </xs:choice>
+            <xs:attribute name="Width" type="xs:integer"  use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RadioButtonParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="AccessText" type="xs:string" minOccurs="0" />
+                <xs:element name="PopupAccessText" type="xs:string" minOccurs="0" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="ApplicationParams" minOccurs="0" maxOccurs="1"/>
+            </xs:choice>
+            <xs:attribute name="Size" type="ButtonSizeType" />
+            <xs:attribute name="CollapseToSmall" type="CollapseThresholdType" />
+            <xs:attribute name="CollapseToMedium" type="CollapseThresholdType" />
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="SplitButtonParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="AccessText" type="xs:string" minOccurs="0" />
+                <xs:element name="PopupAccessText" type="xs:string" minOccurs="0" />
+                <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="ApplicationParams" minOccurs="0" maxOccurs="1"/>
+            </xs:choice>
+            <xs:attribute name="Size" type="ButtonSizeType" />
+            <xs:attribute name="CollapseToSmall" type="CollapseThresholdType" />
+            <xs:attribute name="CollapseToMedium" type="CollapseThresholdType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ComboBoxParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="AccessText" type="xs:string" minOccurs="0"  maxOccurs="1" />
+                <xs:element name="PopupAccessText" type="xs:string" minOccurs="0" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="ApplicationParams" minOccurs="0" maxOccurs="1"/>
+            </xs:choice>
+            <xs:attribute name="Width" type="xs:string" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ButtonParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="AccessText" type="xs:string" minOccurs="0"  maxOccurs="1" />
+                <xs:element name="PopupAccessText" type="xs:string" minOccurs="0" />
+                <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="ApplicationParams" minOccurs="0" maxOccurs="1"/>
+            </xs:choice>
+            <xs:attribute name="Size" type="ButtonSizeType" />
+            <xs:attribute name="CollapseToSmall" type="CollapseThresholdType" />
+            <xs:attribute name="CollapseToMedium" type="CollapseThresholdType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="AutoSizingRules">
+        <xs:complexType>
+            <xs:attribute name="Size" type="ButtonSizeType" />
+            <xs:attribute name="CollapseToSmall" type="CollapseThresholdType" use="optional"/>
+            <xs:attribute name="CollapseToMedium" type="CollapseThresholdType" use="optional"/>
+            <xs:attribute name="NumAdditionalLargeSets" type="xs:integer" use="optional"/>
+            <xs:attribute name="NumMediumSets" type="xs:integer" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GroupParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="AccessText" type="xs:string" minOccurs="0"  maxOccurs="1" />
+                <xs:element name="GroupLauncherAccessText" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="AutoSizingRules" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="ApplicationParams" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="ApplicationItemsKeyTips" minOccurs="0" maxOccurs="1"/>
+            </xs:choice>
+            <xs:attribute name="CollapsePriority" type="ResizePriority" />
+            <xs:attribute name="SmallPriority" type="ResizePriority" />
+            <xs:attribute name="MediumPriority" type="ResizePriority" />
+            <xs:attribute name="LargePriority" type="ResizePriority" />
+            <xs:attribute name="AlwaysShowCollapsed" type="xs:boolean" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="MenuItemParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="AccessText" type="xs:string" minOccurs="0" />
+                <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="ApplicationParams" minOccurs="0" maxOccurs="1"/>
+            </xs:choice>
+            <xs:attribute name="ShowCmdIcon" type="xs:boolean" />
+            <xs:attribute name="UseMenuMarkImage" type="xs:boolean" />
+            <xs:attribute name="UpdateParentSplitButtonIfChecked" type="xs:boolean" />  <!-- If item CheckState is set to true, and is a child of a Split Button, refresh the split button. -->
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="BackstageItemParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="AccessText" type="xs:string" minOccurs="0"  maxOccurs="1" />
+                <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+                <xs:element name="EnableExpression" type="xs:string"  minOccurs="0" maxOccurs="1" />
+                <xs:element ref="ApplicationParams" minOccurs="0" maxOccurs="1"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="BackstageButtonParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="AccessText" type="xs:string" minOccurs="0"  maxOccurs="1" />
+                <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="ApplicationParams" minOccurs="0" maxOccurs="1"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="BackstageDropDownButtonParams">
+        <xs:complexType>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="AccessText" type="xs:string" minOccurs="0"  maxOccurs="1" />
+                <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Visibility" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="ApplicationParams" minOccurs="0" maxOccurs="1"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    
+
+    <!-- =================================================================================
+        References
+    ============================================================================== -->
+
+    <xs:element name="BackstageButtonListRef">
+        <xs:complexType>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="MatchProcessing" type="ReferenceMatchProcessingType" use="optional"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="BackstageGroupListRef">
+        <xs:complexType>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="MatchProcessing" type="ReferenceMatchProcessingType" use="optional"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="BackstageItemRef">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="BackstageItemParams" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="IsDefault" type="xs:boolean" use="optional" />
+            <xs:attribute name="MatchProcessing" type="ReferenceMatchProcessingType" use="optional"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ComboBoxRef">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ComboBoxParams" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="MatchProcessing" type="ReferenceMatchProcessingType" use="optional"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ButtonRef">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ButtonParams" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="MatchProcessing" type="ReferenceMatchProcessingType" use="optional"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="optional"/>
+            <xs:attribute name="Padding" type="xs:string" use="optional"/>
+            <xs:attribute name="Margin" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DgnlibToolsParams">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="AccessText" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+            <xs:attribute name="TreatRootContatinerAsSplitButton" type="xs:boolean" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="TaskToolboxRef">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="DgnlibToolsParams" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Path" type="xs:string" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="MainTaskToolboxRef">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="DgnlibToolsParams" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Path" type="xs:string" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="NamedToolboxRef" >
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="DgnlibToolsParams" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Path" type="xs:string" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SplitButtonRef">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="SplitButtonParams" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required" />
+            <xs:attribute name="MatchProcessing" type="ReferenceMatchProcessingType" use="optional"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="optional"/>
+            <xs:attribute name="Padding" type="xs:string" use="optional"/>
+            <xs:attribute name="Margin" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DropDownButtonRef">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="DropDownButtonParams" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"  />
+            <xs:attribute name="MatchProcessing" type="ReferenceMatchProcessingType" use="optional"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="optional"/>
+            <xs:attribute name="Padding" type="xs:string" use="optional"/>
+            <xs:attribute name="Margin" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    
+    <xs:element name="ToggleButtonRef">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ToggleButtonParams" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"  />
+            <xs:attribute name="MatchProcessing" type="ReferenceMatchProcessingType" use="optional"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="optional"/>
+            <xs:attribute name="Padding" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="RadioButtonRef">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="RadioButtonParams" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"  />
+            <xs:attribute name="MatchProcessing" type="ReferenceMatchProcessingType" use="optional"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="optional"/>
+            <xs:attribute name="Padding" type="xs:string" use="optional"/>
+            <xs:attribute name="Margin" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="GalleryRef">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="GalleryParams" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"  />
+            <xs:attribute name="MatchProcessing" type="ReferenceMatchProcessingType" use="optional"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GroupRef">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a reference to a Group.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="GroupParams" minOccurs="0" maxOccurs="1" />
+                <xs:element name="Label" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Override Label.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer" use="required"/>
+            <xs:attribute name="MatchProcessing" type="ReferenceMatchProcessingType" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DropDownPanelRef">
+        <xs:complexType>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer" use="required"/>
+            <xs:attribute name="MatchProcessing" type="ReferenceMatchProcessingType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GroupPanelRef">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="GroupPanelParams" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer" use="required"/>
+            <xs:attribute name="MatchProcessing" type="ReferenceMatchProcessingType" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ButtonGroupRef">
+        <xs:complexType>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="required"/>
+            <xs:attribute name="MatchProcessing" type="ReferenceMatchProcessingType" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="MenuItemCollectionRef">
+        <xs:complexType>
+            <xs:attribute name="Name" type="NameType" use="required" />
+            <xs:attribute name="MatchProcessing" type="ReferenceMatchProcessingType" use="optional"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="TabRef">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="TabParams" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer" use="required"/>
+            <xs:attribute name="MatchProcessing" type="ReferenceMatchProcessingType" />
+        </xs:complexType>
+    </xs:element>
+
+    <!-- =================================================================================
+        Container Definitions
+    ============================================================================== -->
+    <xs:element name="BackstageItem">
+        <xs:annotation>
+            <xs:documentation>
+                Defines an item in the Ribbon's Backstage.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Label" type="xs:string" minOccurs="0"  maxOccurs="1" />
+                <xs:element name="Description" type="xs:string" minOccurs="0"  maxOccurs="1" />
+                <xs:element ref="BackstageItemParams" minOccurs="0" maxOccurs="1" />
+                <xs:element name="ItemContents" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines the content for the BackstageItem.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                <xs:element ref="BackStageCommand" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="BackstageButtonList" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="BackstageGroupList" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="BackstageButtonListRef" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="BackstageGroupListRef" minOccurs="0" maxOccurs="unbounded" />
+                            </xs:choice>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer" use="required"/>
+            <xs:attribute name="ContentType" type="BackstageItemContentType" use="required" />
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="IsDefault" type="xs:boolean" use="optional" >
+            <xs:annotation>
+                <xs:documentation>
+                    Only one BackstageItem or BackstageItemRef should have IsDefault set to true. This defines the default active item when backstage is open.
+                </xs:documentation>
+            </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                        DisallowButtonSizeOverride,
+                        DisallowGroupPinning,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="BackstageGroup">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a BackstageGroup item in BackstageGroupList.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Label" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element name="Description" type="xs:string"  minOccurs="0" maxOccurs="1" />
+                <xs:element name="Header" type="xs:string"  minOccurs="0" maxOccurs="1" />
+                <xs:element ref="Icon" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="BackstageGroupParams" minOccurs="0" maxOccurs="1" />
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="BackstageButtonList" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="BackstageButtonListRef" minOccurs="0" maxOccurs="unbounded" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="required"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="BackstageGroupList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Header" type="xs:string" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="BackstageGroup" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>                                                   
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Backstage">
+        <xs:annotation>
+            <xs:documentation>
+                Defines the Backstage for a ribbon.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="BackstageItem" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="BackstageItemRef" minOccurs="0" maxOccurs="unbounded" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="BackstageButtonList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="unbounded" >
+                    <xs:element name="Header" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="BackstageButton" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="BackstageDropDownButton" minOccurs="0" maxOccurs="unbounded" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="GroupButtons" type="xs:boolean" use="optional"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GroupPanel">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Label" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Override Label. If not defined the label from the command is used.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="GroupPanelParams" minOccurs="0" maxOccurs="1" />
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="TaskToolboxRef" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="MainTaskToolboxRef" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="NamedToolboxRef" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="DropDownButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="ToggleButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="RadioButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="GalleryRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="SplitButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="ButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="ComboBoxRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="GroupPanel" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="GroupPanelRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="ButtonGroupRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="ButtonGroup" minOccurs="0" maxOccurs="unbounded" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="PanelType" type="GroupPanelType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="optional"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="VerticalAlignment" type="VerticalAlignmentType" use="optional"/>
+            <xs:attribute name="HorizontalAlignment" type="HorizontalAlignmentType" use="optional"/>
+            <xs:attribute name="Margin" type="xs:string" use="optional"/>     <!-- "0,8,0,4" -->
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DropDownPanel">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="TaskToolboxRef" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="MainTaskToolboxRef" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="NamedToolboxRef" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="DropDownButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="ToggleButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="RadioButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="SplitButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="ButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="ComboBoxRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="GroupPanel" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="GroupPanelRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="ButtonGroupRef" minOccurs="0" maxOccurs="unbounded" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="optional"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+     <xs:element name="DgnlibBasedItems">
+        <xs:complexType>
+            <xs:attribute name="DataType" type="DataTreeType" use="required"/>
+            <xs:attribute name="Path" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+   
+    <xs:element name="PanelItems">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="DropDownPanelRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="DropDownPanel" minOccurs="0" maxOccurs="unbounded" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="Type" type="DropDownPanelType" use="required"/>
+            <xs:attribute name="VerticalAlignment" type="VerticalAlignmentType" use="optional"/>
+            <xs:attribute name="HorizontalAlignment" type="HorizontalAlignmentType" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CommandData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="1">
+                    <xs:element name="NamedCommand" minOccurs="0" maxOccurs="1">
+                        <xs:complexType mixed="true">
+                            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                <xs:element name="CmdParameters" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                                <xs:element ref="Icon" minOccurs="0" maxOccurs="1" />
+                            </xs:choice>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element ref="ApplicationRefCommand" minOccurs="0" maxOccurs="1"/>
+                    <xs:element ref="UserKeyinCommand" minOccurs="0" maxOccurs="1"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="Type" type="CommandType" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="MenuItemData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="CommandData" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="MenuItem">
+        <xs:complexType>
+            <xs:choice minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="Label" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Override Label. If not defined the label from the command is used.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Description" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Override Description. If not defined the description from the command is used.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="MenuItemParams" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="MenuItemData" minOccurs="0" maxOccurs="1" />
+            </xs:choice>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer" use="required"/>
+            <xs:attribute name="IsSeparator" type="xs:boolean" use="optional"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="MenuItems">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="MenuItemCollectionRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="MenuItem" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="SubMenuItem" minOccurs="0" maxOccurs="unbounded" />
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SubMenuItem">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a nested submenu within a dropdown menu. Used by SplitButtons and DropDownButtons.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Label" type="xs:string" minOccurs="0" />
+                <xs:element name="AccessText" type="xs:string" minOccurs="0" />
+                <xs:element ref="MenuItems" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer" use="required"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DropDownContent">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="1">
+                    <xs:element ref="MenuItems" minOccurs="0" maxOccurs="1" />
+                    <xs:element ref="PanelItems" minOccurs="0" maxOccurs="1" />
+                    <xs:element ref="DgnlibBasedItems" minOccurs="0" maxOccurs="1" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="Type" type="DropDownContentType" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="MenuItemCollection">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a collection of MenuItems that can be referenced in dropdown menus/submenus of SplitButtons and DropDownButtons.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="MenuItem" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="SubMenuItem" minOccurs="0" maxOccurs="unbounded" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer" use="required"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SplitButton">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a Split Button for use in TabCollection Groups and the Quick Access Toolbar.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="Label" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Override Label. If not defined the label from the command is used.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Description" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Override Description. If not defined the description from the command is used.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="SplitButtonParams" minOccurs="0" maxOccurs="1" />
+                <xs:element name="SplitButtonData" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="CommandData" minOccurs="0" maxOccurs="1" />
+                            <xs:element ref="DropDownContent" minOccurs="0" maxOccurs="1" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="required"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="UpdateCommandToSelected" type="xs:boolean" use="optional" >
+                <xs:annotation>
+                    <xs:documentation>
+                        If true the image and tooltip of Split Button is updated from the selected item.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="UpdateLabelToSelected" type="xs:boolean" use="optional" >
+                <xs:annotation>
+                    <xs:documentation>
+                        If true the label of Split Button is updated to the label of the selected item if UpdateCommnadToSelected is set to false.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Padding" type="xs:string"  use="optional"/>
+            <xs:attribute name="Margin" type="xs:string" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="OverlayImage">
+        <xs:annotation>
+            <xs:documentation>
+                Defines an OverlayImage for a Toggle Button. If the ShowExpression returns true the overlay is displayed.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ShowExpression" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="Icon" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ToggleButton">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a Toggle Button for use in TabCollection Groups and the Quick Access Toolbar.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="Label" type="xs:string" minOccurs="0" maxOccurs="1" >
+                    <xs:annotation>
+                        <xs:documentation>
+                            Override Label. If not defined the label from the command is used.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Description" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Override Description. If not defined the description from the command is used.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="ToggleButtonParams" minOccurs="0" maxOccurs="1" />
+                <xs:element name="ToggleButtonData" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="OverlayImage" minOccurs="0" maxOccurs="1" />
+                            <xs:element ref="CheckedIcon" minOccurs="0" maxOccurs="1" />
+                            <xs:element ref="UncheckedIcon" minOccurs="0" maxOccurs="1" />
+                            <xs:element ref="DisabledIcon" minOccurs="0" maxOccurs="1" />
+                            <xs:element ref="CommandData" minOccurs="0" maxOccurs="1" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="required"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="Padding" type="xs:string" use="optional"/>
+            <xs:attribute name="Margin" type="xs:string" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RadioButton">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a Radio Button for use in TabCollection Groups and the Quick Access Toolbar.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Label" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Override Label. If not defined the label from the command is used.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Description" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Override Description. If not defined the description from the command is used.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="RadioButtonParams" minOccurs="0" maxOccurs="1" />
+                <xs:element name="RadioButtonData" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="CheckedIcon" minOccurs="0" maxOccurs="1" />
+                            <xs:element ref="UncheckedIcon" minOccurs="0" maxOccurs="1" />
+                            <xs:element ref="DisabledIcon" minOccurs="0" maxOccurs="1" />
+                            <xs:element ref="CommandData" minOccurs="0" maxOccurs="1" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="required"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="Padding" type="xs:string" use="optional"/>
+            <xs:attribute name="Margin" type="xs:string" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DropDownButton">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a DropDown Button for use in TabCollection Groups and the Quick Access Toolbar.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Label" type="xs:string" minOccurs="0" />
+                <xs:element name="Description" type="xs:string" minOccurs="0" />
+                <xs:element ref="DropDownButtonParams" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element name="DropDownButtonData" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="SyncItemEvent" type="xs:string" minOccurs="0" maxOccurs="1" />
+                            <xs:element ref="Icon" minOccurs="0" maxOccurs="unbounded" />
+                            <xs:element ref="DropDownContent" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="required"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="Padding" type="xs:string" use="optional"/>
+            <xs:attribute name="Margin" type="xs:string" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Button">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a Button for use in TabCollection Groups and the Quick Access Toolbar.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="Label" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Override Label. If not defined the label from the command is used.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Description" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Override Description. If not defined the description from the command is used.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="ButtonParams" minOccurs="0" maxOccurs="1" />
+                <xs:element name="ButtonData" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="CommandData" minOccurs="0" maxOccurs="1" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer" use="required"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="Padding" type="xs:string" use="optional"/>
+            <xs:attribute name="Margin" type="xs:string" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="BackstageDropDownButton">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a DropDown Button for use in a BackstageButtonList.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Label" type="xs:string" minOccurs="0" />
+                <xs:element name="Description" type="xs:string" minOccurs="0" />
+                <xs:element ref="Icon" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="BackstageDropDownButtonParams" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element name="Group" type="xs:string" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Group string is only used if ButtonList GroupButtons attribute is set.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="BackstageButtonList" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="BackstageButtonListRef" minOccurs="0" maxOccurs="unbounded" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="required"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="BackstageButton">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a Button for use in the Backstage.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Label" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Override Label. If not defined the label from the command is used.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Description" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Override Description. If not defined the description from the command is used.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="BackstageButtonParams" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="CommandData" minOccurs="0" maxOccurs="1" />
+                <xs:element name="Group" type="xs:string" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Group string is only used if ButtonList GroupButtons attribute is set.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer" use="required"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="CloseOnClick" type="xs:boolean" use="required" />
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="BackStageCommand">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="CommandData" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+            <xs:attribute name="CloseOnClick" type="xs:boolean" use="optional" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ButtonGroup">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="unbounded" >
+                    <xs:element ref="ButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="Button" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="SplitButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="SplitButton" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="DropDownButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="ToggleButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="RadioButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="DropDownButton" minOccurs="0" maxOccurs="unbounded" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer"  use="required"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Group">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a group in the TabCollection. Groups can GroupPanels or any valid ribbon item type, such as: panels, button groups, buttons comboboxes or references to them.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Label" type="xs:string" minOccurs="0"  maxOccurs="1" />
+                <xs:element ref="Icon" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="GroupParams" minOccurs="0" maxOccurs="1" />
+                <xs:element name="GroupDialogSpec" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines the info needed to launch a Open Dialog command used to define data related to the group.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="TipTitle" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        If not defined the label from the command is used.
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="TipDescription" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>
+                                        If not defined the description from the command is used.
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="TipImageName" type="xs:string" minOccurs="0" maxOccurs="1" />
+                            <xs:element ref="CommandData" minOccurs="0" maxOccurs="1" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="GroupItems" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines a collections of TabCollection items.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:choice minOccurs="1" maxOccurs="unbounded">
+                                <xs:element ref="ComboBoxRef" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="SplitButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="SplitButton" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="RadioButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="GalleryRef" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="RadioButton" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="ToggleButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="ToggleButton" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="DropDownButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="DropDownButton" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="ButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="Button" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="ButtonGroup" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="GroupPanel" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="GroupPanelRef" minOccurs="0" maxOccurs="unbounded" />
+                                <xs:element ref="TaskToolboxRef" minOccurs="0" maxOccurs="unbounded"/>
+                                <xs:element ref="MainTaskToolboxRef" minOccurs="0" maxOccurs="unbounded"/>
+                                <xs:element ref="NamedToolboxRef" minOccurs="0" maxOccurs="unbounded"/>
+                            </xs:choice>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer" use="required"/>
+            <xs:attribute name="BaseGroup" type="xs:string" use="optional"/>
+            <xs:attribute name="PanelType" type="GroupPanelType" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        This attribute is optional and should only be used if Group Panels are not explicitly defined.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="GroupZone" type="GroupZoneType" use="optional">
+            <xs:annotation>
+                <xs:documentation>
+                    This attribute is optional and is used to define the Position Mapping Zone to use when auto-generating keytips.
+                </xs:documentation>
+            </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ContextualTabs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="TabRef" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="Tab" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="TabItems">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="Group" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="GroupRef" minOccurs="0" maxOccurs="unbounded" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="AutoCreateFromWorkflow" type="xs:boolean" use="optional"/>
+            <xs:attribute name="Path" type="xs:string" use="optional"/>
+            <xs:attribute name="Size" type="ButtonSizeType" use="optional"/>
+            <xs:attribute name="CollapseToSmall" type="CollapseThresholdType" use="optional"/>
+            <xs:attribute name="CollapseToMedium" type="CollapseThresholdType" use="optional"/>
+            <xs:attribute name="UseSizingRule" type="xs:boolean" use="optional"/>
+            <xs:attribute name="DisplayMainGroup" type="xs:boolean" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Tab">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a tab in a TabCollection. Tabs contain Groups, and groups contains items such as: panels, button groups, buttons comboboxes or references to them.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Label" type="xs:string" minOccurs="0" />
+                <xs:element ref="TabParams" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="TabItems" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer" use="required"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional" />
+            <xs:attribute name="BaseTab" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        Specifies the name of a tab definition to use a base on which the groups defined in this tab are merged using the specified MatchProcessing.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="QuickAccessCollection">
+        <xs:annotation>
+            <xs:documentation>
+                Defines a collections of TabCollection item type that can be specified in the QuickAccess toolbar.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="ComboBoxRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="SplitButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="SplitButton" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="RadioButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="RadioButton" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="ToggleButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="ToggleButton" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="DropDownButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="DropDownButton" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="ButtonRef" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="Button" minOccurs="0" maxOccurs="unbounded" />
+                    <xs:element ref="ButtonGroup" minOccurs="0" maxOccurs="unbounded" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="BaseQAT" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        Specifies the name of a QuickAccessCollection definition to use as a base on which the item defined in this QAT are merged using the specified MatchProcessing.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="WorkFlowPickerWidth" type="xs:double" use="optional"/>
+            <xs:attribute name="WorkflowLabel" type="xs:string" use="optional"/>
+            <xs:attribute name="WorkflowDescription" type="xs:string" use="optional"/>
+            <xs:attribute name="WorkFlowPickerAccessText" type="xs:string" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="TabCollection">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="TabRef" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="Tab" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ContextualTabSet">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Label" type="xs:string" minOccurs="1" maxOccurs="1" />
+                <xs:element ref="TabSetParams" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="ContextualTabs" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="SelectFirstTabOnActivation" type="xs:boolean" use="optional"/>
+            <xs:attribute name="Color" type="xs:string" use="optional"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Workflow">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Label" type="xs:string" minOccurs="1" maxOccurs="1" />
+                <xs:element ref="WorkflowParams" minOccurs="0" maxOccurs="1" />
+                <xs:element name="Ribbon">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="TabCollectionRef" type="xs:string" minOccurs="1" maxOccurs="1" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Name" type="NameType" use="required"/>
+            <xs:attribute name="Priority" type="xs:integer" use="required"/>
+            <xs:attribute name="MatchProcessing" type="DefinitionMatchProcessingType" use="optional"/>
+            <xs:attribute name="CustomizationFlags" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        One of the following Customization flags that can be ored together with "|".
+                        None,
+                        FixedButtonSize,
+                        FixedKeyTip,
+                        FixedPopupKeyTip,
+                        FixedLabel,
+                        FixedWidth,
+                        ComponentContentsLocked,
+                        ComponentLocked,
+                        HideDefinition,
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="RibbonItems">
+        <xs:complexType>
+            <xs:choice minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="Workflows" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="Workflow" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="TabCollections" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines a collection of TabCollections.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="TabCollection" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="ContextualTabSets" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines a collection of ContextualTabSets.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ContextualTabSet" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="QuickAccessCollections" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines a collection of tools to show in QuickAccessToolBar.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="QuickAccessCollection" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="Tabs" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines a collection of Tabs. Tabs are displayed in TabCollections and contain groups.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="Tab" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="Groups" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines a collection of Groups. Groups are added to Tabs and may contain Group Panels or any supported ribbon item type.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="Group" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="GroupPanels" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines a collection of Group Panel. Group panels may contain any supported ribbon item type.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="GroupPanel" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="DropDownPanels" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines a collection of DropDown Panels. DropDown panels can be use by Split buttons and DropDown buttons.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="DropDownPanel" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="ButtonGroups" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines a collection of Buttons to be used in TabCollection Groups. The group may contain any supported button type.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ButtonGroup" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="SplitButtons" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines a collection of Split Buttons to be used in TabCollection Groups and QuickAccess toolbar.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="SplitButton" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="DropDownButtons" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines a collection of DropDown Buttons to be used in TabCollection Groups and QuickAccess toolbar.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="DropDownButton" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="ToggleButtons" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines a collection of DropDown Buttons to be used in TabCollection Groups and QuickAccess toolbar.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="ToggleButton" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                
+                <xs:element name="RadioButtons" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines a collection of Radio Buttons to be used in TabCollection Groups and QuickAccess toolbar.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="RadioButton" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="Buttons" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines a collection of Buttons to be used in TabCollection Groups and QuickAccess toolbar.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="Button" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="MenuItemCollections" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines a collection of MenuItemCollections.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="MenuItemCollection" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="BackstageGroupLists" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Defines available BackstageGroupLists.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="BackstageGroupList" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="BackstageButtonLists" minOccurs="0" maxOccurs="1">
+                     <xs:annotation>
+                        <xs:documentation>
+                            Defines available BackstageButtonLists.
+                        </xs:documentation>
+                    </xs:annotation>
+                   <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="BackstageButtonList" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="Backstages" minOccurs="0" maxOccurs="1">
+                     <xs:annotation>
+                        <xs:documentation>
+                            Defines available Backstage definition.  There should only be one of these defined and it should be named Mstn.Backstage.Default.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="Backstage" minOccurs="0" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

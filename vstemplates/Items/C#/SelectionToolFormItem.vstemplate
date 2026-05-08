@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate
+  Version="3.0.0"
+  Type="Item"
+  xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
+  xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+
+	<TemplateData>
+		<Name>Selection Tool (Windows Forms)</Name>
+		<Description>Creates a DgnElementSetTool-based selection tool with a WinForms UI shell, suited for modal dialogs and legacy UI workflows inside MicroStation CONNECT.</Description>
+
+		<Icon>__TemplateIcon.ico</Icon>
+		<PreviewImage>__PreviewImage.png</PreviewImage>
+
+		<TemplateID>20e67df0-c5b6-4349-85e8-81a9f6aef98a</TemplateID>
+		<ProjectType>CSharp</ProjectType>
+		<RequiredFrameworkVersion>4.7.2</RequiredFrameworkVersion>
+
+		<NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+		<Hidden>false</Hidden>
+		<DefaultName>SelectionToolForm.cs</DefaultName>
+	</TemplateData>
+
+	<TemplateContent>
+		<References>
+			<Reference>
+				<Assembly>System</Assembly>
+			</Reference>
+			<Reference>
+				<Assembly>System.Drawing</Assembly>
+			</Reference>
+			<Reference>
+				<Assembly>System.Windows.Forms</Assembly>
+			</Reference>
+		</References>
+
+		<!-- Tool class -->
+		<ProjectItem ReplaceParameters="true" TargetFileName="$fileinputname$.cs">SelectionToolWinForm.cs</ProjectItem>
+
+		<!-- Tool settings form -->
+		<ProjectItem ReplaceParameters="true" TargetFileName="$fileinputname$.cs\$fileinputname$Form.cs" DependentUpon="$fileinputname$.cs">Form.cs</ProjectItem>
+
+		<ProjectItem ReplaceParameters="true" TargetFileName="$fileinputname$Form.Designer.cs" DependentUpon="$fileinputname$Form.cs">Form.Designer.cs</ProjectItem>
+
+		<CustomParameters>
+			<CustomParameter Name="$item$" Value="MicroStation Selection Tool Settings" />
+			<CustomParameter Name="$language$" Value="CSharp" />
+		</CustomParameters>
+	</TemplateContent>
+
+	<WizardExtension>
+		<Assembly>
+			VSTMC.Wizard, Version=8.2.1.2, Culture=neutral, PublicKeyToken=6dfed4efb28d91d8
+		</Assembly>
+		<FullClassName>VSTMC.Wizard.IWizardImplementation</FullClassName>
+	</WizardExtension>
+
+</VSTemplate>

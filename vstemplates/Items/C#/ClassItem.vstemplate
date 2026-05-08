@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate
+  Version="3.0.0"
+  Type="Item"
+  xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
+  xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+
+	<TemplateData>
+		<Name>Class</Name>
+		<Description>dds a MicroStation CONNECT-ready C# class file (parameter replacement enabled). Use for add-in helpers, utilities, and API wrappers.</Description>
+
+		<Icon>__TemplateIcon.ico</Icon>
+		<PreviewImage>__PreviewImage.png</PreviewImage>
+
+		<TemplateID>e7273349-6aa0-4f81-8b67-830e25fab5f2</TemplateID>
+		<ProjectType>CSharp</ProjectType>
+		<RequiredFrameworkVersion>4.7.2</RequiredFrameworkVersion>
+
+		<NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+		<Hidden>false</Hidden>
+		<DefaultName>Class.cs</DefaultName>
+	</TemplateData>
+
+	<TemplateContent>
+		<References>
+			<Reference>
+				<Assembly>System</Assembly>
+			</Reference>
+		</References>
+
+		<ProjectItem ReplaceParameters="true">Class.cs</ProjectItem>
+
+		<CustomParameters>
+			<CustomParameter Name="$item$" Value="MicroStation Class" />
+			<CustomParameter Name="$language$" Value="CSharp" />
+		</CustomParameters>
+	</TemplateContent>
+
+	<WizardExtension>
+		<Assembly>VSTMC.Wizard, Version=8.2.1.2, Culture=neutral, PublicKeyToken=6dfed4efb28d91d8</Assembly>
+		<FullClassName>VSTMC.Wizard.IWizardImplementation</FullClassName>
+	</WizardExtension>
+</VSTemplate>

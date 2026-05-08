@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+	<TemplateData>
+		<Name>Key-In Command Table</Name>
+		<Description>Creates a Commands.xml command table and matching key-in / command stub(s) for MicroStation CONNECT. Use when you want discoverable commands and key-ins.</Description>
+		<Icon>__TemplateIcon.ico</Icon>
+		<PreviewImage>__PreviewImage.png</PreviewImage>
+		<TemplateID>dc840d66-60af-4a86-8263-fe683b5d9119</TemplateID>
+		<ProjectType>CSharp</ProjectType>
+		<RequiredFrameworkVersion>4.7.2</RequiredFrameworkVersion>
+		<NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+		<Hidden>false</Hidden>
+		<DefaultName>KeyinCommands.cs</DefaultName>
+	</TemplateData>
+
+	<TemplateContent>
+		<References>
+			<Reference>
+				<Assembly>System</Assembly>
+			</Reference>
+		</References>
+
+		<!-- Command implementation -->
+		<ProjectItem ReplaceParameters="true" TargetFileName="KeyinCommands.cs">KeyinCommands.cs</ProjectItem>
+
+		<!-- Command table -->
+		<ProjectItem ReplaceParameters="true" TargetFileName="Commands.xml" ItemType="EmbeddedResource" SubType="Designer">Commands.xml</ProjectItem>
+
+		<CustomParameters>
+			<CustomParameter Name="$item$" Value="MicroStation Key-In Command Table"/>
+			<CustomParameter Name="$language$" Value="CSharp"/>
+		</CustomParameters>
+	</TemplateContent>
+
+	<WizardExtension>
+		<Assembly>VSTMC.Wizard, Version=8.2.1.2, Culture=neutral, PublicKeyToken=6dfed4efb28d91d8</Assembly>
+		<FullClassName>VSTMC.Wizard.IWizardImplementation</FullClassName>
+	</WizardExtension>
+</VSTemplate>

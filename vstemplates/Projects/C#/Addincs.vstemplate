@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate
+  Version="3.0.0"
+  Type="Project"
+  xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"
+  xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+
+	<TemplateData>
+		<Name>MicroStation Basic Add-In</Name>
+		<Description>Creates a minimal MicroStation CONNECT Edition add-in project with required Bentley references and startup wiring. Designed for event-driven extensions, background services, and programmatic integrations without command table configuration.</Description>
+		<Icon>4555.ico</Icon>
+		<PreviewImage>__PreviewImage.png</PreviewImage>
+
+		<ProjectType>CSharp</ProjectType>
+		<LanguageTag>CSharp</LanguageTag>
+		<PlatformTag>Windows</PlatformTag>
+		<ProjectTypeTag>Desktop</ProjectTypeTag>
+		<RequiredFrameworkVersion>4.7.2</RequiredFrameworkVersion>
+
+		<SortOrder>1000</SortOrder>
+		<TemplateID>563e3ebd-bae2-4154-b3b5-e5374bca96fb</TemplateID>
+
+		<CreateNewFolder>true</CreateNewFolder>
+		<DefaultName>MicroStationAddin</DefaultName>
+		<ProvideDefaultName>true</ProvideDefaultName>
+
+		<NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+		<Hidden>false</Hidden>
+	</TemplateData>
+
+	<TemplateContent>
+		<Project File="ProjectTemplate.csproj" ReplaceParameters="true">
+			<ProjectItem ReplaceParameters="true" TargetFileName="Properties\AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
+
+			<ProjectItem ReplaceParameters="true" OpenInEditor="true" TargetFileName="Program.cs">Program.cs</ProjectItem>
+
+			<ProjectItem ReplaceParameters="true" TargetFileName="Properties\Resources.Designer.cs">Resources.Designer.cs</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="Properties\Resources.resx">Resources.resx</ProjectItem>
+
+			<ProjectItem ReplaceParameters="true" TargetFileName="Properties\Settings.settings">Settings.settings</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="Properties\Settings.Designer.cs">Settings.Designer.cs</ProjectItem>
+
+			<ProjectItem ReplaceParameters="false" TargetFileName=".editorconfig">.editorconfig</ProjectItem>
+			<ProjectItem ReplaceParameters="false" TargetFileName="Directory.Build.props">Directory.Build.props</ProjectItem>						
+		</Project>
+
+		<CustomParameters>
+			<CustomParameter Name="$language$" Value="CSharp" />
+			<CustomParameter Name="$rootnamespace$" Value="$safeprojectname$" />
+		</CustomParameters>
+	</TemplateContent>
+
+	<WizardExtension>
+		<Assembly>VSTMC.Wizard, Version=8.2.1.2, Culture=neutral, PublicKeyToken=6dfed4efb28d91d8</Assembly>
+		<FullClassName>VSTMC.Wizard.IWizardImplementation</FullClassName>
+	</WizardExtension>
+</VSTemplate>

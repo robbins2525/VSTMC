@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0"
+            Type="Project"
+            xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+
+	<TemplateData>
+		<Name>MicroStation Managed C++ Keyin AddIn (WPF)</Name>
+		<Description>
+			Creates a Bentley managed AddIn with command table, keyins, and a reopenable dockable WPF tool hosted through ElementHost.
+		</Description>
+		<ProjectType>VC</ProjectType>
+		<LanguageTag>Cpp</LanguageTag>
+		<PlatformTag>Windows</PlatformTag>
+		<ProjectTypeTag>Desktop</ProjectTypeTag>
+
+		<SortOrder>1000</SortOrder>
+		<CreateNewFolder>true</CreateNewFolder>
+		<DefaultName>ManagedKeyinAddinWpf</DefaultName>
+		<ProvideDefaultName>true</ProvideDefaultName>
+
+		<Icon>__TemplateIcon.ico</Icon>
+		<PreviewImage>__PreviewImage.png</PreviewImage>
+
+		<Hidden>false</Hidden>
+	</TemplateData>
+
+	<TemplateContent>
+		<Project File="ProjectTemplate.vcxproj" TargetFileName="$safeprojectname$.vcxproj" ReplaceParameters="true">
+			<ProjectItem ReplaceParameters="true" TargetFileName="CommandTable.xml">CommandTable.xml</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="KeyinCommands.cpp">KeyinCommands.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$.cpp">ManagedKeyinAddin.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$.h">ManagedKeyinAddin.h</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="WpfHostForm.cpp">WpfHostForm.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="WpfHostForm.h">WpfHostForm.h</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="WpfToolControl.cpp">WpfToolControl.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="WpfToolControl.h">WpfToolControl.h</ProjectItem>
+			<ProjectItem ReplaceParameters="false" TargetFileName="stdafx.cpp">stdafx.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="false" TargetFileName="stdafx.h">stdafx.h</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="README.md">README.md</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cpp">AssemblyInfo.cpp</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="$safeprojectname$.vcxproj.filters">ProjectTemplate.vcxproj.filters</ProjectItem>
+		</Project>
+
+		<CustomParameters>
+			<CustomParameter Name="$language$" Value="CPP"/>
+		</CustomParameters>
+	</TemplateContent>
+
+	<WizardExtension>
+		<Assembly>VSTMC.Wizard, Version=8.2.1.2, Culture=neutral, PublicKeyToken=6dfed4efb28d91d8</Assembly>
+		<FullClassName>VSTMC.Wizard.IWizardImplementation</FullClassName>
+	</WizardExtension>
+</VSTemplate>

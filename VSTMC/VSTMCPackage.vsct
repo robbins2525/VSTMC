@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<Extern href="stdidcmd.h" />
+	<Extern href="vsshlids.h" />
+
+	<Commands package="guidVSTMCPackage">
+		<Groups>
+			<Group guid="guidVSTMCPackageCmdSet" id="MenuGroup" priority="0x0600">
+				<Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS" />
+			</Group>
+
+			<Group guid="guidVSTMCPackageCmdSet" id="EditorCtxtMenuGroup" priority="0x0600">
+				<Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN" />
+			</Group>
+
+			<Group guid="guidVSTMCPackageCmdSet" id="PrjCtxtMenuGroup" priority="0x0600">
+				<Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_PROJNODE" />
+			</Group>
+
+			<Group guid="guidVSTMCPackageCmdSet" id="HelpGroup" priority="0x0600">
+				<Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_HELP" />
+			</Group>
+
+			<Group guid="guidVSTMCPackageCmdSet" id="BentleyHelpMenuGroup" priority="0x0100">
+				<Parent guid="guidVSTMCPackageCmdSet" id="cmdidBentleyHelpCommand" />
+			</Group>
+		</Groups>
+
+		<Menus>
+			<Menu guid="guidVSTMCPackageCmdSet" id="cmdidBentleyHelpCommand" priority="0x0010" type="Menu">
+				<Parent guid="guidVSTMCPackageCmdSet" id="HelpGroup" />
+				<Strings>
+					<ButtonText>Bentley Help</ButtonText>
+					<MenuText>Bentley Help</MenuText>
+					<CommandName>Bentley Help</CommandName>
+					<ToolTipText>Open Bentley SDK help topics</ToolTipText>
+					<CanonicalName>VSTMC.BentleyHelp</CanonicalName>					
+				</Strings>
+			</Menu>
+		</Menus>
+
+		<Buttons>
+			<Button guid="guidVSTMCPackageCmdSet" id="cmdidNativeImportCommand" priority="0x0100" type="Button">
+				<Parent guid="guidVSTMCPackageCmdSet" id="MenuGroup" />
+				<Icon guid="guidImages" id="ImportPic" />
+				<Strings>
+					<ButtonText>Bentley Import Tool</ButtonText>
+					<CommandName>Bentley Import Tool</CommandName>
+					<ToolTipText>Import Bentley CONNECT native applications into the current project</ToolTipText>
+					<CanonicalName>VSTMC.NativeImport</CanonicalName>
+				</Strings>
+			</Button>
+
+			<Button guid="guidVSTMCPackageCmdSet" id="cmdidOpenFolderCommand" priority="0x0100" type="Button">
+				<Parent guid="guidVSTMCPackageCmdSet" id="PrjCtxtMenuGroup" />
+				<Icon guid="guidImages" id="FolderOpenPic" />
+				<CommandFlag>DynamicVisibility</CommandFlag>
+				<CommandFlag>TextChanges</CommandFlag>
+				<Strings>
+					<ButtonText>Open Bentley App Folder in File Explorer</ButtonText>
+					<CommandName>Open Bentley App Folder</CommandName>
+					<ToolTipText>Open the Bentley application installation folder in File Explorer</ToolTipText>
+					<CanonicalName>VSTMC.OpenBentleyAppFolder</CanonicalName>
+				</Strings>
+			</Button>
+
+			<Button guid="guidVSTMCPackageCmdSet" id="cmdidOpenMdlAppsFolderCommand" priority="0x0100" type="Button">
+				<Parent guid="guidVSTMCPackageCmdSet" id="PrjCtxtMenuGroup" />
+				<Icon guid="guidImages" id="FolderOpenPic" />
+				<CommandFlag>DynamicVisibility</CommandFlag>
+				<CommandFlag>TextChanges</CommandFlag>
+				<Strings>
+					<ButtonText>Open MDLAPPS Folder in File Explorer</ButtonText>
+					<CommandName>Open MDLAPPS Folder</CommandName>
+					<ToolTipText>Open the Bentley MDLAPPS folder in File Explorer</ToolTipText>
+					<CanonicalName>VSTMC.OpenMdlAppsFolder</CanonicalName>
+				</Strings>
+			</Button>
+
+			<Button guid="guidVSTMCPackageCmdSet" id="cmdidSearchBentleyForumsCommand" priority="0x0100" type="Button">
+				<Parent guid="guidVSTMCPackageCmdSet" id="EditorCtxtMenuGroup" />
+				<Icon guid="guidImages" id="SearchPic" />
+				<CommandFlag>DynamicVisibility</CommandFlag>
+				<Strings>
+					<ButtonText>Search Bentley Forums</ButtonText>
+					<CommandName>Search Bentley Forums</CommandName>
+					<ToolTipText>Search Bentley Communities using the selected editor text</ToolTipText>
+					<CanonicalName>VSTMC.SearchBentleyForums</CanonicalName>
+				</Strings>
+			</Button>
+
+			<Button guid="guidVSTMCPackageCmdSet" id="cmdidOpenSDKFolderCommand" priority="0x0100" type="Button">
+				<Parent guid="guidVSTMCPackageCmdSet" id="PrjCtxtMenuGroup" />
+				<Icon guid="guidImages" id="FolderOpenPic" />
+				<CommandFlag>DynamicVisibility</CommandFlag>
+				<CommandFlag>TextChanges</CommandFlag>
+				<Strings>
+					<ButtonText>Open Bentley SDK Folder in File Explorer</ButtonText>
+					<CommandName>Open Bentley SDK Folder</CommandName>
+					<ToolTipText>Open the Bentley SDK installation folder in File Explorer</ToolTipText>
+					<CanonicalName>VSTMC.OpenBentleySdkFolder</CanonicalName>
+				</Strings>
+			</Button>
+
+			<Button guid="guidVSTMCPackageCmdSet" id="cmdidVSTMCHelpCommand" priority="0x0100" type="Button">
+				<Parent guid="guidVSTMCPackageCmdSet" id="HelpGroup" />
+				<Icon guid="guidImages" id="HelpPic" />
+				<Strings>
+					<ButtonText>VSTMC Help</ButtonText>
+					<CommandName>VSTMC Help</CommandName>
+					<ToolTipText>Open the Visual Studio Tools for MicroStation CONNECT Edition help documentation</ToolTipText>
+					<CanonicalName>VSTMC.Help</CanonicalName>
+				</Strings>
+			</Button>
+
+			<Button guid="guidVSTMCPackageCmdSet" id="cmdidMyDropDownComboGetList" priority="0x0100" type="Button">
+				<Parent guid="guidVSTMCPackageCmdSet" id="BentleyHelpMenuGroup" />
+				<CommandFlag>DynamicItemStart</CommandFlag>
+				<CommandFlag>DynamicVisibility</CommandFlag>
+				<CommandFlag>TextChanges</CommandFlag>
+				<CommandFlag>DefaultInvisible</CommandFlag>
+				<Strings>
+					<ButtonText>Bentley Help Item</ButtonText>
+					<CommandName>Bentley Help Item</CommandName>
+					<ToolTipText>Open a Bentley SDK help topic</ToolTipText>
+					<CanonicalName>VSTMC.BentleyHelpItem</CanonicalName>
+				</Strings>
+			</Button>
+		</Buttons>
+
+		<Bitmaps>
+			<Bitmap guid="guidImages" href="Resources\ImageStrip.png" usedList="BentleyPic, FolderOpenPic, SearchPic, DeletePic, AlignmentPic, StrikethroughPic, ImportPic, MSCEPic, ORDPic, HelpPic, SchemaPic" />
+		</Bitmaps>
+	</Commands>
+
+	<Symbols>
+		<GuidSymbol name="guidVSTMCPackage" value="{373071be-5abe-4690-ad2b-99d591d5a9e5}" />
+
+		<GuidSymbol name="guidVSTMCPackageCmdSet" value="{438120cb-7081-4b71-bac5-ccd58b950c38}">
+			<IDSymbol name="MenuGroup" value="0x1020" />
+			<IDSymbol name="HelpGroup" value="0x1080" />
+			<IDSymbol name="BentleyHelpMenuGroup" value="0x1090" />
+			<IDSymbol name="EditorCtxtMenuGroup" value="0x1040" />
+			<IDSymbol name="PrjCtxtMenuGroup" value="0x1060" />
+			<IDSymbol name="cmdidNativeImportCommand" value="0x0100" />
+			<IDSymbol name="cmdidOpenFolderCommand" value="4129" />
+			<IDSymbol name="cmdidOpenMdlAppsFolderCommand" value="4130" />
+			<IDSymbol name="cmdidSearchBentleyForumsCommand" value="4131" />
+			<IDSymbol name="cmdidOpenSDKFolderCommand" value="4193" />
+			<IDSymbol name="cmdidVSTMCHelpCommand" value="4194" />
+			<IDSymbol name="cmdidMyDropDownComboGetList" value="4195" />
+			<IDSymbol name="cmdidBentleyHelpCommand" value="4225" />
+			<IDSymbol name="cmdidAddKeyinTreeSchemaCommand" value="4226" />
+		</GuidSymbol>
+
+		<GuidSymbol name="guidImages" value="{bc6230d7-3069-45c9-abeb-9e9696245513}">
+			<IDSymbol name="BentleyPic" value="1" />
+			<IDSymbol name="FolderOpenPic" value="2" />
+			<IDSymbol name="SearchPic" value="3" />
+			<IDSymbol name="DeletePic" value="4" />
+			<IDSymbol name="AlignmentPic" value="5" />
+			<IDSymbol name="StrikethroughPic" value="6" />
+			<IDSymbol name="ImportPic" value="7" />
+			<IDSymbol name="MSCEPic" value="8" />
+			<IDSymbol name="ORDPic" value="9" />
+			<IDSymbol name="HelpPic" value="10" />
+			<IDSymbol name="SchemaPic" value="11" />
+		</GuidSymbol>
+	</Symbols>
+</CommandTable>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<ItemGroup>
+		<Filter Include="Source Files">
+			<UniqueIdentifier>{6AF54741-6F37-4F1C-9901-C21112D87E67}</UniqueIdentifier>
+			<Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+		</Filter>
+		<Filter Include="Header Files">
+			<UniqueIdentifier>{2D56CC7F-937A-451F-A0D3-4291A0673FC7}</UniqueIdentifier>
+			<Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+		</Filter>
+		<Filter Include="Bentley Build Files">
+			<UniqueIdentifier>{28FD3C31-7197-4674-B872-9F96BE743C39}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="Resource Files">
+			<UniqueIdentifier>{7E35BC11-4061-49EF-BC61-2CFED4013A95}</UniqueIdentifier>
+			<Extensions>r;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+		</Filter>
+		<Filter Include="Documentation">
+			<UniqueIdentifier>{1dc7cda1-89b0-4e03-90a8-769422092989}</UniqueIdentifier>
+		</Filter>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Filter Include="app" />
+		<Filter Include="commands" />
+		<Filter Include="diagnostics" />
+		<Filter Include="platform" />
+		<Filter Include="shared" />
+		<Filter Include="Bentley Build Files" />
+		<Filter Include="Resource Files" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<ClCompile Include="$safeprojectname$.cpp">
+			<Filter>Source Files</Filter>
+		</ClCompile>
+		<ClCompile Include="app\App.cpp">
+			<Filter>app</Filter>
+		</ClCompile>
+		<ClCompile Include="commands\KeyinHandlers.cpp">
+			<Filter>commands</Filter>
+		</ClCompile>
+		<ClCompile Include="diagnostics\Logger.cpp">
+			<Filter>diagnostics</Filter>
+		</ClCompile>
+		<ClCompile Include="platform\BentleyApi.cpp">
+			<Filter>platform</Filter>
+		</ClCompile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ClInclude Include="$safeprojectname$.h">
+			<Filter>Header Files</Filter>
+		</ClInclude>
+		<ClInclude Include="app\App.h">
+			<Filter>app</Filter>
+		</ClInclude>
+		<ClInclude Include="commands\CommandIds.h">
+			<Filter>commands</Filter>
+		</ClInclude>
+		<ClInclude Include="commands\KeyinHandlers.h">
+			<Filter>commands</Filter>
+		</ClInclude>
+		<ClInclude Include="diagnostics\Logger.h">
+			<Filter>diagnostics</Filter>
+		</ClInclude>
+		<ClInclude Include="platform\BentleyApi.h">
+			<Filter>platform</Filter>
+		</ClInclude>
+		<ClInclude Include="shared\Common.h">
+			<Filter>shared</Filter>
+		</ClInclude>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="$safeprojectname$.mke">
+			<Filter>Bentley Build Files</Filter>
+		</None>
+		<None Include="$safeprojectname$rsc.mki">
+			<Filter>Bentley Build Files</Filter>
+		</None>
+		<None Include="$safeprojectname$.r">
+			<Filter>Resource Files</Filter>
+		</None>
+		<None Include="$safeprojectname$cmd.r">
+			<Filter>Resource Files</Filter>
+		</None>		
+	</ItemGroup>
+
+</Project>
